@@ -15,7 +15,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QApplication, QDial, QFrame,
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QFrame,
     QGroupBox, QHBoxLayout, QHeaderView, QLabel,
     QLayout, QMainWindow, QMenuBar, QPushButton,
     QRadioButton, QSizePolicy, QSplitter, QStatusBar,
@@ -42,23 +42,23 @@ class Ui_MainWindow(object):
         self.groupBox_machineSetting = QGroupBox(self.groupBox_options)
         self.groupBox_machineSetting.setObjectName(u"groupBox_machineSetting")
         self.groupBox_machineSetting.setGeometry(QRect(10, 30, 131, 131))
-        self.widget = QWidget(self.groupBox_machineSetting)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(10, 20, 94, 96))
-        self.verticalLayout_2 = QVBoxLayout(self.widget)
+        self.layoutWidget = QWidget(self.groupBox_machineSetting)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(10, 20, 94, 96))
+        self.verticalLayout_2 = QVBoxLayout(self.layoutWidget)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.radioButton_Almaco = QRadioButton(self.widget)
+        self.radioButton_Almaco = QRadioButton(self.layoutWidget)
         self.radioButton_Almaco.setObjectName(u"radioButton_Almaco")
 
         self.verticalLayout_2.addWidget(self.radioButton_Almaco)
 
-        self.radioButton_Winter = QRadioButton(self.widget)
+        self.radioButton_Winter = QRadioButton(self.layoutWidget)
         self.radioButton_Winter.setObjectName(u"radioButton_Winter")
 
         self.verticalLayout_2.addWidget(self.radioButton_Winter)
 
-        self.radioButton_Other = QRadioButton(self.widget)
+        self.radioButton_Other = QRadioButton(self.layoutWidget)
         self.radioButton_Other.setObjectName(u"radioButton_Other")
         self.radioButton_Other.setChecked(True)
 
@@ -105,23 +105,79 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.dial = QDial(self.centralwidget)
-        self.dial.setObjectName(u"dial")
-        self.dial.setMaximumSize(QSize(526, 485))
+        self.FirstGraph_QFrame = QFrame(self.centralwidget)
+        self.FirstGraph_QFrame.setObjectName(u"FirstGraph_QFrame")
+        self.FirstGraph_QFrame.setMinimumSize(QSize(0, 100))
+        self.FirstGraph_QFrame.setFrameShape(QFrame.StyledPanel)
+        self.FirstGraph_QFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_3 = QVBoxLayout(self.FirstGraph_QFrame)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.protein_label = QLabel(self.FirstGraph_QFrame)
+        self.protein_label.setObjectName(u"protein_label")
 
-        self.horizontalLayout.addWidget(self.dial)
+        self.horizontalLayout_3.addWidget(self.protein_label)
 
-        self.dial_2 = QDial(self.centralwidget)
-        self.dial_2.setObjectName(u"dial_2")
-        self.dial_2.setMaximumSize(QSize(525, 485))
+        self.last_protei_value_label = QLabel(self.FirstGraph_QFrame)
+        self.last_protei_value_label.setObjectName(u"last_protei_value_label")
 
-        self.horizontalLayout.addWidget(self.dial_2)
+        self.horizontalLayout_3.addWidget(self.last_protei_value_label)
 
-        self.dial_3 = QDial(self.centralwidget)
-        self.dial_3.setObjectName(u"dial_3")
-        self.dial_3.setMaximumSize(QSize(526, 485))
 
-        self.horizontalLayout.addWidget(self.dial_3)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_3)
+
+
+        self.horizontalLayout.addWidget(self.FirstGraph_QFrame)
+
+        self.SecondGraph_QFrame = QFrame(self.centralwidget)
+        self.SecondGraph_QFrame.setObjectName(u"SecondGraph_QFrame")
+        self.SecondGraph_QFrame.setFrameShape(QFrame.StyledPanel)
+        self.SecondGraph_QFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_4 = QVBoxLayout(self.SecondGraph_QFrame)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.label_H_Value = QLabel(self.SecondGraph_QFrame)
+        self.label_H_Value.setObjectName(u"label_H_Value")
+
+        self.horizontalLayout_4.addWidget(self.label_H_Value)
+
+        self.label_H_Value_Num = QLabel(self.SecondGraph_QFrame)
+        self.label_H_Value_Num.setObjectName(u"label_H_Value_Num")
+
+        self.horizontalLayout_4.addWidget(self.label_H_Value_Num)
+
+
+        self.verticalLayout_4.addLayout(self.horizontalLayout_4)
+
+
+        self.horizontalLayout.addWidget(self.SecondGraph_QFrame)
+
+        self.ThirGraph_QFrame = QFrame(self.centralwidget)
+        self.ThirGraph_QFrame.setObjectName(u"ThirGraph_QFrame")
+        self.ThirGraph_QFrame.setMinimumSize(QSize(0, 100))
+        self.ThirGraph_QFrame.setFrameShape(QFrame.StyledPanel)
+        self.ThirGraph_QFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_5 = QVBoxLayout(self.ThirGraph_QFrame)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.label_S_Value = QLabel(self.ThirGraph_QFrame)
+        self.label_S_Value.setObjectName(u"label_S_Value")
+
+        self.horizontalLayout_5.addWidget(self.label_S_Value)
+
+        self.label_S_Value_Num = QLabel(self.ThirGraph_QFrame)
+        self.label_S_Value_Num.setObjectName(u"label_S_Value_Num")
+
+        self.horizontalLayout_5.addWidget(self.label_S_Value_Num)
+
+
+        self.verticalLayout_5.addLayout(self.horizontalLayout_5)
+
+
+        self.horizontalLayout.addWidget(self.ThirGraph_QFrame)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -129,29 +185,29 @@ class Ui_MainWindow(object):
         self.splitter_2 = QSplitter(self.centralwidget)
         self.splitter_2.setObjectName(u"splitter_2")
         self.splitter_2.setOrientation(Qt.Horizontal)
-        self.file_label = QLabel(self.splitter_2)
-        self.file_label.setObjectName(u"file_label")
-        sizePolicy1.setHeightForWidth(self.file_label.sizePolicy().hasHeightForWidth())
-        self.file_label.setSizePolicy(sizePolicy1)
-        font1 = QFont()
-        font1.setPointSize(20)
-        self.file_label.setFont(font1)
-        self.file_label.setFrameShape(QFrame.Panel)
-        self.file_label.setFrameShadow(QFrame.Raised)
-        self.splitter_2.addWidget(self.file_label)
         self.file_name_label = QLabel(self.splitter_2)
         self.file_name_label.setObjectName(u"file_name_label")
         sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy3.setHorizontalStretch(1)
+        sizePolicy3.setHorizontalStretch(3)
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.file_name_label.sizePolicy().hasHeightForWidth())
         self.file_name_label.setSizePolicy(sizePolicy3)
+        font1 = QFont()
+        font1.setPointSize(20)
         self.file_name_label.setFont(font1)
         self.file_name_label.setFrameShape(QFrame.Panel)
         self.file_name_label.setFrameShadow(QFrame.Raised)
         self.file_name_label.setLineWidth(1)
         self.file_name_label.setMidLineWidth(0)
         self.splitter_2.addWidget(self.file_name_label)
+        self.File_timestamp_Label = QLabel(self.splitter_2)
+        self.File_timestamp_Label.setObjectName(u"File_timestamp_Label")
+        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy4.setHorizontalStretch(1)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.File_timestamp_Label.sizePolicy().hasHeightForWidth())
+        self.File_timestamp_Label.setSizePolicy(sizePolicy4)
+        self.splitter_2.addWidget(self.File_timestamp_Label)
 
         self.verticalLayout.addWidget(self.splitter_2)
 
@@ -161,21 +217,23 @@ class Ui_MainWindow(object):
         if (self.entry_table.rowCount() < 1):
             self.entry_table.setRowCount(1)
         self.entry_table.setObjectName(u"entry_table")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(7)
-        sizePolicy4.setHeightForWidth(self.entry_table.sizePolicy().hasHeightForWidth())
-        self.entry_table.setSizePolicy(sizePolicy4)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(7)
+        sizePolicy5.setHeightForWidth(self.entry_table.sizePolicy().hasHeightForWidth())
+        self.entry_table.setSizePolicy(sizePolicy5)
+        self.entry_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
         self.entry_table.setAlternatingRowColors(True)
         self.entry_table.setSelectionMode(QAbstractItemView.NoSelection)
         self.entry_table.setSortingEnabled(False)
         self.entry_table.setRowCount(1)
         self.entry_table.setColumnCount(10)
+        self.entry_table.horizontalHeader().setCascadingSectionResizes(True)
+        self.entry_table.horizontalHeader().setStretchLastSection(False)
 
         self.verticalLayout.addWidget(self.entry_table)
 
         self.verticalLayout.setStretch(0, 1)
-        self.verticalLayout.setStretch(2, 1)
         self.verticalLayout.setStretch(3, 1)
 
         self.horizontalLayout_2.addLayout(self.verticalLayout)
@@ -208,7 +266,13 @@ class Ui_MainWindow(object):
         self.radioButton_Other.setText(QCoreApplication.translate("MainWindow", u"Other", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Select File", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.file_label.setText(QCoreApplication.translate("MainWindow", u"File Name", None))
+        self.protein_label.setText(QCoreApplication.translate("MainWindow", u"Protein", None))
+        self.last_protei_value_label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_H_Value.setText(QCoreApplication.translate("MainWindow", u"H Value", None))
+        self.label_H_Value_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_S_Value.setText(QCoreApplication.translate("MainWindow", u"S Value", None))
+        self.label_S_Value_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.file_name_label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.File_timestamp_Label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
     # retranslateUi
 

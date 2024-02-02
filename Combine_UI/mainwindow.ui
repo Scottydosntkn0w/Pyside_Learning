@@ -50,7 +50,7 @@
        <property name="title">
         <string>Choose Machine</string>
        </property>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -90,7 +90,7 @@
      </widget>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,1,1">
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,0,1">
       <property name="leftMargin">
        <number>10</number>
       </property>
@@ -172,33 +172,105 @@
          <enum>QLayout::SetDefaultConstraint</enum>
         </property>
         <item>
-         <widget class="QDial" name="dial">
-          <property name="maximumSize">
+         <widget class="QFrame" name="FirstGraph_QFrame">
+          <property name="minimumSize">
            <size>
-            <width>526</width>
-            <height>485</height>
+            <width>0</width>
+            <height>100</height>
            </size>
           </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QLabel" name="protein_label">
+               <property name="text">
+                <string>Protein</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="last_protei_value_label">
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
         </item>
         <item>
-         <widget class="QDial" name="dial_2">
-          <property name="maximumSize">
-           <size>
-            <width>525</width>
-            <height>485</height>
-           </size>
+         <widget class="QFrame" name="SecondGraph_QFrame">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
           </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <widget class="QLabel" name="label_H_Value">
+               <property name="text">
+                <string>H Value</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_H_Value_Num">
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
         </item>
         <item>
-         <widget class="QDial" name="dial_3">
-          <property name="maximumSize">
+         <widget class="QFrame" name="ThirGraph_QFrame">
+          <property name="minimumSize">
            <size>
-            <width>526</width>
-            <height>485</height>
+            <width>0</width>
+            <height>100</height>
            </size>
           </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QLabel" name="label_S_Value">
+               <property name="text">
+                <string>S Value</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_S_Value_Num">
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>
@@ -208,32 +280,10 @@
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
-        <widget class="QLabel" name="file_label">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>20</pointsize>
-          </font>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Panel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <property name="text">
-          <string>File Name</string>
-         </property>
-        </widget>
         <widget class="QLabel" name="file_name_label">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>1</horstretch>
+           <horstretch>3</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -258,6 +308,17 @@
           <string>TextLabel</string>
          </property>
         </widget>
+        <widget class="QLabel" name="File_timestamp_Label">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
        </widget>
       </item>
       <item>
@@ -267,6 +328,9 @@
           <horstretch>0</horstretch>
           <verstretch>7</verstretch>
          </sizepolicy>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
         </property>
         <property name="alternatingRowColors">
          <bool>true</bool>
@@ -283,6 +347,12 @@
         <property name="columnCount">
          <number>10</number>
         </property>
+        <attribute name="horizontalHeaderCascadingSectionResizes">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>false</bool>
+        </attribute>
         <row/>
         <column/>
         <column/>
