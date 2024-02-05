@@ -21,6 +21,8 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QRadioButton, QSizePolicy, QSplitter, QStatusBar,
     QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
 
+from Custom_Widgets.AnalogGaugeWidget import AnalogGaugeWidget
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
@@ -127,6 +129,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
 
+        self.widget = QWidget(self.FirstGraph_QFrame)
+        self.widget.setObjectName(u"widget")
+
+        self.verticalLayout_3.addWidget(self.widget)
+
 
         self.horizontalLayout.addWidget(self.FirstGraph_QFrame)
 
@@ -150,6 +157,11 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_4.addLayout(self.horizontalLayout_4)
+
+        self.widget_2 = AnalogGaugeWidget(self.SecondGraph_QFrame)
+        self.widget_2.setObjectName(u"widget_2")
+
+        self.verticalLayout_4.addWidget(self.widget_2)
 
 
         self.horizontalLayout.addWidget(self.SecondGraph_QFrame)
@@ -175,6 +187,11 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_5.addLayout(self.horizontalLayout_5)
+
+        self.widget_3 = QWidget(self.ThirGraph_QFrame)
+        self.widget_3.setObjectName(u"widget_3")
+
+        self.verticalLayout_5.addWidget(self.widget_3)
 
 
         self.horizontalLayout.addWidget(self.ThirGraph_QFrame)
