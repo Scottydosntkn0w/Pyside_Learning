@@ -205,7 +205,14 @@
             </layout>
            </item>
            <item>
-            <widget class="QWidget" name="widget" native="true"/>
+            <widget class="AnalogGaugeWidget" name="widget" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>400</height>
+              </size>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -238,7 +245,14 @@
             </layout>
            </item>
            <item>
-            <widget class="AnalogGaugeWidget" name="widget_2" native="true"/>
+            <widget class="AnalogGaugeWidget" name="widget_2" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>513</width>
+               <height>400</height>
+              </size>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -277,7 +291,14 @@
             </layout>
            </item>
            <item>
-            <widget class="QWidget" name="widget_3" native="true"/>
+            <widget class="AnalogGaugeWidget" name="widget_3" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>400</height>
+              </size>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>

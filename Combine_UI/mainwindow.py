@@ -19,95 +19,185 @@ from matplotlib.figure import Figure
 
 timer = QTimer()
 
-def rot_text(ang): 
-    rotation = np.degrees(np.radians(ang) * np.pi / np.pi - np.radians(90))
-    return rotation
+def Set_Guage_1_Protein(self):
+        # Setup Guage
+        self.widget.units = "%"
+        self.widget.minValue = 0
+        self.widget.maxValue = 100
+        #Divisions
+        self.widget.scalaCount = 10
 
-def degree_range(n): 
-    start = np.linspace(0,180,n+1, endpoint=True)[0:-1]
-    end = np.linspace(0,180,n+1, endpoint=True)[1::]
-    mid_points = start + ((end-start)/2.)
-    return np.c_[start, end], mid_points
+        self.widget.updateValue(self.widget.minValue)
+        self.widget.updateAngleOffset(0)
+        self.widget.setScaleStartAngle(135)
+        self.widget.setTotalScaleAngleSize(270)
+        self.widget.setEnableBarGraph(True)
+        self.widget.setEnableValueText(True)
+        self.widget.setEnableCenterPoint(False)
+        self.widget.setEnableNeedlePolygon(True)
 
-def gauge(labels=['LOW','MEDIUM','HIGH','VERY HIGH','EXTREME'], \
-          colors='jet_r', arrow=1, title='', fname=False): 
-    
-    #"""some sanity checks first """
-    
-    N = len(labels)
-    
-    if arrow > N: 
-        raise Exception("\n\nThe category ({}) is greated than \
-        the length\nof the labels ({})".format(arrow, N))
- 
-    #""" if colors is a string, we assume it's a matplotlib colormap and we discretize in N discrete colors  """
-    
-    if isinstance(colors, str):
-        cmap = cm.get_cmap(colors, N)
-        cmap = cmap(np.arange(N))
-        colors = cmap[::-1,:].tolist()
-    if isinstance(colors, list): 
-        if len(colors) == N:
-            colors = colors[::-1]
-        else: 
-            raise Exception("\n\nnumber of colors {} not equal \
-            to number of categories{}\n".format(len(colors), N))
+        self.widget.setEnableScaleText(True)
+        self.widget.setEnableScalePolygon(True)
+        self.widget.setEnableBigScaleGrid(True)
+        self.widget.setEnableFineScaleGrid(True)
+        self.widget.setGaugeColorOuterRadiusFactor(1000)
+        self.widget.setGaugeColorInnerRadiusFactor(600)
+        self.widget.setNeedleColor(R=0, G=0, B=0, Transparency=255)
+        #self.widget.setNeedleColorOnDrag(R=R, G=G, B=B, Transparency=Transparency)
+        #self.widget.setScaleValueColor(R=R, G=G, B=B, Transparency=Transparency)
+        #self.widget.setDisplayValueColor(R=R, G=G, B=B, Transparency=Transparency)
+        self.widget.setGaugeTheme(0)
+        #self.widget.setOuterCircleColor()
+        red_scale_start = .26
+        red_scale_end = .55
+        yellow_spread = .06
+        self.widget.set_scale_polygon_colors([[red_scale_start, Qt.red],
+                                    [red_scale_start+yellow_spread, Qt.cyan],
+                                    [red_scale_start+(yellow_spread*2), Qt.green],
+                                    [red_scale_end-(yellow_spread*2), Qt.green],
+                                    [red_scale_end-yellow_spread, Qt.yellow],
+                                    [red_scale_end, Qt.red]])
+        # self.widget.setCustomGaugeTheme(
+        #     color1 = "red",
+        #     color2= "purple",
+        #     color3 = "blue"
+        # )
 
-    #"""begins the plotting"""
-    
-    fig, ax = plt.subplots()
+        # self.widget.setScalePolygonColor(
+        #     color1 = "green"
+        # )
 
-    ang_range, mid_points = degree_range(N)
+        # self.widget.setNeedleCenterColor(
+        #     color1 = "white"
+        # )
 
-    labels = labels[::-1]
-    
-    #"""plots the sectors and the arcs """
-    patches = []
-    for ang, c in zip(ang_range, colors): 
-        # sectors
-        patches.append(Wedge((0.,0.), .4, *ang, facecolor='w', lw=2))
-        # arcs
-        patches.append(Wedge((0.,0.), .4, *ang, width=0.10, facecolor=c, lw=2, alpha=0.5))
-    
-    [ax.add_patch(p) for p in patches]
-    
-    #""" set the labels (e.g. 'LOW','MEDIUM',...) """
-    
-    for mid, lab in zip(mid_points, labels): 
+        # self.widget.setOuterCircleColor(
+        #     color1 = "black"
+        # )
 
-        ax.text(0.35 * np.cos(np.radians(mid)), 0.35 * np.sin(np.radians(mid)), lab, \
-            horizontalalignment='center', verticalalignment='center', fontsize=14, \
-            fontweight='bold', rotation = rot_text(mid))
+        self.widget.setBigScaleColor("#005275")
+        self.widget.setFineScaleColor("#005275")
+        self.widget.setMouseTracking(False)
 
-    #"""set the bottom banner and the title"""
-    r = Rectangle((-0.4,-0.1),0.8,0.1, facecolor='w', lw=2)
-    ax.add_patch(r)
-    
-    ax.text(0, -0.05, title, horizontalalignment='center', \
-         verticalalignment='center', fontsize=22, fontweight='bold')
+def Set_Guage_2_H(self):
+        # Setup Guage
+        self.widget_2.units = "H"
+        self.widget_2.minValue = 0
+        self.widget_2.maxValue = 100
+        #Divisions
+        self.widget_2.scalaCount = 10
 
-    #""" plots the arrow now """
-    
-    pos = mid_points[abs(arrow - N)]
-    
-    ax.arrow(0, 0, 0.225 * np.cos(np.radians(pos)), 0.225 * np.sin(np.radians(pos)), \
-                 width=0.04, head_width=0.09, head_length=0.1, fc='k', ec='k')
-    
-    ax.add_patch(Circle((0, 0), radius=0.02, facecolor='k'))
-    ax.add_patch(Circle((0, 0), radius=0.01, facecolor='w', zorder=11))
+        self.widget_2.updateValue(self.widget_2.minValue)
+        self.widget_2.updateAngleOffset(0)
+        self.widget_2.setScaleStartAngle(135)
+        self.widget_2.setTotalScaleAngleSize(270)
+        self.widget_2.setEnableBarGraph(True)
+        self.widget_2.setEnableValueText(True)
+        self.widget_2.setEnableCenterPoint(False)
+        self.widget_2.setEnableNeedlePolygon(True)
 
-    #"""removes frame and ticks, and makes axis equal and tight """
-    
-    ax.set_frame_on(False)
-    ax.axes.set_xticks([])
-    ax.axes.set_yticks([])
-    ax.axis('equal')
-    plt.tight_layout()
-    if fname:
-        fig.savefig(fname, dpi=200)
-    return ax
-    
+        self.widget_2.setEnableScaleText(True)
+        self.widget_2.setEnableScalePolygon(True)
+        self.widget_2.setEnableBigScaleGrid(True)
+        self.widget_2.setEnableFineScaleGrid(True)
+        self.widget_2.setGaugeColorOuterRadiusFactor(1000)
+        self.widget_2.setGaugeColorInnerRadiusFactor(600)
+        self.widget_2.setNeedleColor(R=0, G=0, B=0, Transparency=255)
+        #self.widget_2.setNeedleColorOnDrag(R=R, G=G, B=B, Transparency=Transparency)
+        #self.widget_2.setScaleValueColor(R=R, G=G, B=B, Transparency=Transparency)
+        #self.widget_2.setDisplayValueColor(R=R, G=G, B=B, Transparency=Transparency)
+        self.widget_2.setGaugeTheme(0)
+        #self.widget_2.setOuterCircleColor()
+        red_scale_start = .29
+        red_scale_end = 1
+        yellow_spread = .01
+        self.widget_2.set_scale_polygon_colors([[red_scale_start, Qt.red],
+                                    [red_scale_start+yellow_spread, Qt.yellow],
+                                    [red_scale_start+(yellow_spread*2), Qt.green],
+                                    [red_scale_end-(yellow_spread*2), Qt.green],
+                                    [red_scale_end-yellow_spread, Qt.yellow],
+                                    [red_scale_end, Qt.red]])
+        # self.widget_2.setCustomGaugeTheme(
+        #     color1 = "red",
+        #     color2= "purple",
+        #     color3 = "blue"
+        # )
 
+        # self.widget_2.setScalePolygonColor(
+        #     color1 = "green"
+        # )
+
+        # self.widget_2.setNeedleCenterColor(
+        #     color1 = "white"
+        # )
+
+        # self.widget_2.setOuterCircleColor(
+        #     color1 = "black"
+        # )
+
+        self.widget_2.setBigScaleColor("#005275")
+        self.widget_2.setFineScaleColor("#005275")
+        self.widget_2.setMouseTracking(False)
+
+def Set_Guage_3_S(self):
+        # Setup Guage
+        self.widget_3.units = "S"
+        self.widget_3.minValue = 0
+        self.widget_3.maxValue = 20
+        #Divisions
+        self.widget_3.scalaCount = 4
+
+        self.widget_3.updateValue(self.widget_3.minValue)
+        self.widget_3.updateAngleOffset(0)
+        self.widget_3.setScaleStartAngle(135)
+        self.widget_3.setTotalScaleAngleSize(270)
+        self.widget_3.setEnableBarGraph(True)
+        self.widget_3.setEnableValueText(True)
+        self.widget_3.setEnableCenterPoint(False)
+        self.widget_3.setEnableNeedlePolygon(True)
+
+        self.widget_3.setEnableScaleText(True)
+        self.widget_3.setEnableScalePolygon(True)
+        self.widget_3.setEnableBigScaleGrid(True)
+        self.widget_3.setEnableFineScaleGrid(True)
+        self.widget_3.setGaugeColorOuterRadiusFactor(1000)
+        self.widget_3.setGaugeColorInnerRadiusFactor(600)
+        self.widget_3.setNeedleColor(R=0, G=0, B=0, Transparency=255)
+        #self.widget_3.setNeedleColorOnDrag(R=R, G=G, B=B, Transparency=Transparency)
+        #self.widget_3.setScaleValueColor(R=R, G=G, B=B, Transparency=Transparency)
+        #self.widget_3.setDisplayValueColor(R=R, G=G, B=B, Transparency=Transparency)
+        self.widget_3.setGaugeTheme(0)
+        #self.widget_3.setOuterCircleColor()
+        red_scale_start = .369
+        red_scale_end = 1
+        yellow_spread = .01
+        self.widget_3.set_scale_polygon_colors([[red_scale_start, Qt.red],
+                                    [red_scale_start+yellow_spread, Qt.yellow],
+                                    [red_scale_start+(yellow_spread*2), Qt.green],
+                                    [red_scale_end-(yellow_spread*2), Qt.green],
+                                    [red_scale_end-yellow_spread, Qt.yellow],
+                                    [red_scale_end, Qt.red]])
+        # self.widget_3.setCustomGaugeTheme(
+        #     color1 = "red",
+        #     color2= "purple",
+        #     color3 = "blue"
+        # )
+
+        # self.widget_3.setScalePolygonColor(
+        #     color1 = "green"
+        # )
+
+        # self.widget_3.setNeedleCenterColor(
+        #     color1 = "white"
+        # )
+
+        # self.widget_3.setOuterCircleColor(
+        #     color1 = "black"
+        # )
+
+        self.widget_3.setBigScaleColor("#005275")
+        self.widget_3.setFineScaleColor("#005275")
+        self.widget_3.setMouseTracking(False)
 
 def Update_Table(self, file_name):
             
@@ -120,6 +210,7 @@ def Update_Table(self, file_name):
                     csvFile.rename(columns={'Property_2_Value': 'Protein', 'Property_2_H': 'H', "Property_2_S":"S"}, inplace=True)
                     csvFile_rev = csvFile[::-1].reset_index(drop=True)
                     formatted_panda = csvFile_rev
+                    
             if self.radioButton_Other.isChecked():         
                 with open(file_name, "r") as fileInput:
                     csvFile = pandas.read_csv(fileInput)
@@ -133,6 +224,7 @@ def Update_Table(self, file_name):
                     csvFile.rename(columns={'Property_2_Value': 'Protein', 'Property_2_H': 'H', "Property_2_S":"S"}, inplace=True)
                     csvFile_rev = csvFile[::-1].reset_index(drop=True)
                     formatted_panda = csvFile_rev
+
             no_row = len(formatted_panda)
             no_columns = len(formatted_panda.columns)
             self.entry_table.setColumnCount(no_columns)
@@ -190,30 +282,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setWindowTitle("Combine UI")
         self.app = app
 
-        canvas = PlotCanvas(self)
+
+        Set_Guage_1_Protein(self)
+        Set_Guage_2_H(self)
+        Set_Guage_3_S(self)
+        self.widget.updateValue(22)
 
 
-        
-        #adding base MATLABPLOTS to QT UI
-        static_canvas1 = FigureCanvas(Figure(figsize=(5, 3)))
-        self.verticalLayout_3.addWidget(canvas)
-        static_canvas2 = FigureCanvas(Figure(figsize=(5, 3)))
-        self.verticalLayout_4.addWidget(static_canvas2)
-        static_canvas3 = FigureCanvas(Figure(figsize=(5, 3)))
-        self.verticalLayout_5.addWidget(static_canvas3)
-
-        #Configre first MatLabplot Canvas
-        #self._static_ax = static_canvas1.figure.subplots()
-        #t = np.linspace(0, 10, 501)
-        #self._static_ax.plot()
-        # #Configre second MatLabplot Canvas
-        # self._static_ax = static_canvas2.figure.subplots()
-        # t = np.linspace(0, 10, 501)
-        # self._static_ax.plot(t, np.tan(t), ".")        
-        # #Configre third MatLabplot Canvas
-        # self._static_ax = static_canvas3.figure.subplots()
-        # t = np.linspace(0, 10, 501)
-        # self._static_ax.plot(t, np.tan(t), ".")
 
         #Signal slot connections
         self.pushButton.clicked.connect(self.select_file)
@@ -245,41 +320,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             timer.start(1000)
 
 
-class PlotCanvas(FigureCanvas):
-    def __init__(self, parent=None, dpi=100):
-        super(PlotCanvas, self).__init__(Figure())
 
-        self.setParent(parent)
-
-        # Create the figure and figure canvas
-        fig = Figure(dpi=dpi)
-        self.figure = fig
-        self.canvas = FigureCanvas(self.figure)
-        self.axes = fig.add_subplot()
-
-        # Create data for the graph
-        data = [random.random() for i in range(25)]
-
-        # Line style
-        self.axes.plot(data, linestyle='dashed')
-
-        # Graph title text
-        self.axes.set_title('The Graph Title')
-
-        # Axes labels text
-        self.axes.set_ylabel('Y Label')
-        self.axes.set_xlabel('X Label')
-
-        # X-axis color change
-        self.axes.xaxis.label.set_color('blue')
-
-        # Set the x-axis ticks and labels
-        self.axes.xaxis.set_tick_params(colors='red')
-
-        # Set y-axis label line color
-        self.axes.spines['left'].set_color('orange')
-        
-        self.draw()
 
 
 

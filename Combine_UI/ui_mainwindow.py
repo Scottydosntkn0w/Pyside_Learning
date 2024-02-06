@@ -129,8 +129,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
 
-        self.widget = QWidget(self.FirstGraph_QFrame)
+        self.widget = AnalogGaugeWidget(self.FirstGraph_QFrame)
         self.widget.setObjectName(u"widget")
+        self.widget.setMinimumSize(QSize(0, 400))
 
         self.verticalLayout_3.addWidget(self.widget)
 
@@ -160,6 +161,7 @@ class Ui_MainWindow(object):
 
         self.widget_2 = AnalogGaugeWidget(self.SecondGraph_QFrame)
         self.widget_2.setObjectName(u"widget_2")
+        self.widget_2.setMinimumSize(QSize(513, 400))
 
         self.verticalLayout_4.addWidget(self.widget_2)
 
@@ -188,8 +190,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addLayout(self.horizontalLayout_5)
 
-        self.widget_3 = QWidget(self.ThirGraph_QFrame)
+        self.widget_3 = AnalogGaugeWidget(self.ThirGraph_QFrame)
         self.widget_3.setObjectName(u"widget_3")
+        self.widget_3.setMinimumSize(QSize(0, 400))
 
         self.verticalLayout_5.addWidget(self.widget_3)
 
