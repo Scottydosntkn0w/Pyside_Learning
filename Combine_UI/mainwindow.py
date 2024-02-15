@@ -306,18 +306,26 @@ def Update_Table(self, file_name):
                 print(f'data: {data}')
                 
                 print(e)
-                 
+                self.textBrowser_Error.setPlainText("error in cell parsing,  " + str(e))
+                self.textBrowser_Error.setTextBackgroundColor(QtGui.QColor(Qt.red))
             self.entry_table.resizeColumnsToContents()
             first_row = formatted_panda.iloc[0]
             self.last_protei_value_label.setText(str(first_row['Protein']))
             self.label_H_Value_Num.setText(str(first_row['H']))
             self.label_S_Value_Num.setText(str(first_row['S']))
+            self.label_Bad_Num.setText(str(rowBad_count))
+            self.label_Total_Num.setText(str(rowNumber))
+            percent_good = int(((rowNumber - rowBad_count) / rowNumber) * 100)
+            self.label_PerGood_Num.setText(str(percent_good) + "%")
 
             
             
             print(f"Number of rows Bad: {rowBad_count} out of {rowNumber}")
+            self.textBrowser_Error.setPlainText("")
         except Exception as e:
             print(e)
+            self.textBrowser_Error.setPlainText(str(e))
+            self.textBrowser_Error.setTextBackgroundColor(QtGui.QColor(Qt.red))
 
 
 

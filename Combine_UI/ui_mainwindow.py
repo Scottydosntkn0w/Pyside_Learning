@@ -19,7 +19,8 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QGroupBox, QHBoxLayout, QHeaderView, QLabel,
     QLayout, QMainWindow, QMenuBar, QPushButton,
     QRadioButton, QSizePolicy, QSplitter, QStatusBar,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+    QTableWidget, QTableWidgetItem, QTextBrowser, QVBoxLayout,
+    QWidget)
 
 from Custom_Widgets.AnalogGaugeWidget import AnalogGaugeWidget
 
@@ -66,6 +67,58 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.radioButton_Other)
 
+        self.groupBoxStats = QGroupBox(self.groupBox_options)
+        self.groupBoxStats.setObjectName(u"groupBoxStats")
+        self.groupBoxStats.setGeometry(QRect(10, 160, 221, 111))
+        self.verticalLayoutWidget = QWidget(self.groupBoxStats)
+        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
+        self.verticalLayoutWidget.setGeometry(QRect(10, 20, 51, 80))
+        self.verticalLayout_6 = QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.label_Bad = QLabel(self.verticalLayoutWidget)
+        self.label_Bad.setObjectName(u"label_Bad")
+
+        self.verticalLayout_6.addWidget(self.label_Bad)
+
+        self.label_Total = QLabel(self.verticalLayoutWidget)
+        self.label_Total.setObjectName(u"label_Total")
+
+        self.verticalLayout_6.addWidget(self.label_Total)
+
+        self.label_PerGood = QLabel(self.verticalLayoutWidget)
+        self.label_PerGood.setObjectName(u"label_PerGood")
+
+        self.verticalLayout_6.addWidget(self.label_PerGood)
+
+        self.verticalLayoutWidget_2 = QWidget(self.groupBoxStats)
+        self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
+        self.verticalLayoutWidget_2.setGeometry(QRect(70, 20, 141, 80))
+        self.verticalLayout_7 = QVBoxLayout(self.verticalLayoutWidget_2)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.label_Bad_Num = QLabel(self.verticalLayoutWidget_2)
+        self.label_Bad_Num.setObjectName(u"label_Bad_Num")
+
+        self.verticalLayout_7.addWidget(self.label_Bad_Num)
+
+        self.label_Total_Num = QLabel(self.verticalLayoutWidget_2)
+        self.label_Total_Num.setObjectName(u"label_Total_Num")
+
+        self.verticalLayout_7.addWidget(self.label_Total_Num)
+
+        self.label_PerGood_Num = QLabel(self.verticalLayoutWidget_2)
+        self.label_PerGood_Num.setObjectName(u"label_PerGood_Num")
+
+        self.verticalLayout_7.addWidget(self.label_PerGood_Num)
+
+        self.groupBox_Error = QGroupBox(self.groupBox_options)
+        self.groupBox_Error.setObjectName(u"groupBox_Error")
+        self.groupBox_Error.setGeometry(QRect(20, 280, 211, 231))
+        self.textBrowser_Error = QTextBrowser(self.groupBox_Error)
+        self.textBrowser_Error.setObjectName(u"textBrowser_Error")
+        self.textBrowser_Error.setEnabled(False)
+        self.textBrowser_Error.setGeometry(QRect(10, 30, 191, 191))
 
         self.horizontalLayout_2.addWidget(self.groupBox_options)
 
@@ -296,6 +349,23 @@ class Ui_MainWindow(object):
         self.radioButton_Almaco.setText(QCoreApplication.translate("MainWindow", u"Almaco", None))
         self.radioButton_Winter.setText(QCoreApplication.translate("MainWindow", u"Winter", None))
         self.radioButton_Other.setText(QCoreApplication.translate("MainWindow", u"Other", None))
+        self.groupBoxStats.setTitle(QCoreApplication.translate("MainWindow", u"Statistics", None))
+        self.label_Bad.setText(QCoreApplication.translate("MainWindow", u"Bad:", None))
+        self.label_Total.setText(QCoreApplication.translate("MainWindow", u"Total:", None))
+        self.label_PerGood.setText(QCoreApplication.translate("MainWindow", u"% Good:", None))
+        self.label_Bad_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_Total_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_PerGood_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.groupBox_Error.setTitle(QCoreApplication.translate("MainWindow", u"Error Message", None))
+        self.textBrowser_Error.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">No Error</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Select File", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.protein_label.setText(QCoreApplication.translate("MainWindow", u"Protein", None))
