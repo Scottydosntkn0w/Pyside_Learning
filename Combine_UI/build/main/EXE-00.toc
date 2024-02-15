@@ -1,9 +1,10 @@
 ('C:\\Users\\shendricks\\OneDrive - Benson '
- 'Hill\\Documents\\Pyside_Learning\\Combine_UI\\build\\main\\main.exe',
- True,
+ 'Hill\\Documents\\Pyside_Learning\\Combine_UI\\build\\main\\Combine_UI.exe',
+ False,
  False,
  True,
- 'C:\\Users\\shendricks\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\bootloader\\images\\icon-console.ico',
+ ['C:\\Users\\shendricks\\OneDrive - Benson '
+  'Hill\\Documents\\Pyside_Learning\\Combine_UI\\BensonHillIngredients.ico'],
  None,
  False,
  False,
@@ -31,7 +32,7 @@
  None,
  None,
  'C:\\Users\\shendricks\\OneDrive - Benson '
- 'Hill\\Documents\\Pyside_Learning\\Combine_UI\\build\\main\\main.pkg',
+ 'Hill\\Documents\\Pyside_Learning\\Combine_UI\\build\\main\\Combine_UI.pkg',
  [('pyi-contents-directory _internal', '', 'OPTION'),
   ('PYZ-00.pyz',
    'C:\\Users\\shendricks\\OneDrive - Benson '
@@ -94,8 +95,8 @@
  [],
  False,
  False,
- 1708027491,
- [('run.exe',
-   'C:\\Users\\shendricks\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\run.exe',
+ 1708028824,
+ [('runw.exe',
+   'C:\\Users\\shendricks\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\runw.exe',
    'EXECUTABLE')],
  'C:\\Users\\shendricks\\AppData\\Local\\Programs\\Python\\Python312\\python312.dll')

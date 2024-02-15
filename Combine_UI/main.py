@@ -3,7 +3,7 @@ from PySide6.QtWidgets import QApplication
 from mainwindow import MainWindow
 from PySide6.QtGui import QPalette, QColor
 from PySide6.QtCore import Qt
-
+from PySide6 import QtGui
 app = QApplication(sys.argv)
 
 
@@ -28,7 +28,7 @@ app.setPalette(darkPalette)
 #____________________________________________________________
 
 
-
+app.setWindowIcon(QtGui.QIcon('BensonHillIngredients.ico'))
 
 w = MainWindow(app)
 w.show()

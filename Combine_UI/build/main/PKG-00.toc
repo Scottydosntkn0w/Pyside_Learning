@@ -1,5 +1,5 @@
 ('C:\\Users\\shendricks\\OneDrive - Benson '
- 'Hill\\Documents\\Pyside_Learning\\Combine_UI\\build\\main\\main.pkg',
+ 'Hill\\Documents\\Pyside_Learning\\Combine_UI\\build\\main\\Combine_UI.pkg',
  {'BINARY': True,
   'DATA': True,
   'EXECUTABLE': True,
