@@ -10,12 +10,12 @@ file_path = filedialog.askopenfilename()
 
 with open(file_path, "r") as fileInput:
 
-    # Skips the heading 
-    # Using next() method 
-     
-    header = pandas.read_csv(fileInput,index_col=0, nrows=0).columns.tolist()
-    print(header)
-    csvFile = pandas.read_csv(fileInput, sep=";", decimal=",")
+
+    csvFile = pandas.read_csv(fileInput, sep=";", decimal=",",usecols=[0,1,7,9,10],skiprows=1, header=None)
+    csvFile.columns = ['Timestamp','ID_REC','Protein','H','S']
+    
+
+
     print(csvFile)
 
 

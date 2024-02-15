@@ -298,6 +298,9 @@
                <height>400</height>
               </size>
              </property>
+             <property name="mouseTracking">
+              <bool>false</bool>
+             </property>
             </widget>
            </item>
           </layout>
@@ -359,8 +362,23 @@
           <verstretch>7</verstretch>
          </sizepolicy>
         </property>
+        <property name="font">
+         <font>
+          <family>Segoe MDL2 Assets</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="cursor" stdset="0">
+         <cursorShape>CrossCursor</cursorShape>
+        </property>
+        <property name="lineWidth">
+         <number>2</number>
+        </property>
         <property name="sizeAdjustPolicy">
          <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
         </property>
         <property name="alternatingRowColors">
          <bool>true</bool>
@@ -380,8 +398,20 @@
         <attribute name="horizontalHeaderCascadingSectionResizes">
          <bool>true</bool>
         </attribute>
+        <attribute name="horizontalHeaderMinimumSectionSize">
+         <number>100</number>
+        </attribute>
+        <attribute name="horizontalHeaderDefaultSectionSize">
+         <number>200</number>
+        </attribute>
         <attribute name="horizontalHeaderStretchLastSection">
          <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderMinimumSectionSize">
+         <number>20</number>
+        </attribute>
+        <attribute name="verticalHeaderDefaultSectionSize">
+         <number>40</number>
         </attribute>
         <row/>
         <column/>

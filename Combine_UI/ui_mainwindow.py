@@ -193,6 +193,7 @@ class Ui_MainWindow(object):
         self.widget_3 = AnalogGaugeWidget(self.ThirGraph_QFrame)
         self.widget_3.setObjectName(u"widget_3")
         self.widget_3.setMinimumSize(QSize(0, 400))
+        self.widget_3.setMouseTracking(False)
 
         self.verticalLayout_5.addWidget(self.widget_3)
 
@@ -242,14 +243,25 @@ class Ui_MainWindow(object):
         sizePolicy5.setVerticalStretch(7)
         sizePolicy5.setHeightForWidth(self.entry_table.sizePolicy().hasHeightForWidth())
         self.entry_table.setSizePolicy(sizePolicy5)
+        font2 = QFont()
+        font2.setFamilies([u"Segoe MDL2 Assets"])
+        font2.setPointSize(14)
+        self.entry_table.setFont(font2)
+        self.entry_table.viewport().setProperty("cursor", QCursor(Qt.CrossCursor))
+        self.entry_table.setLineWidth(2)
         self.entry_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.entry_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.entry_table.setAlternatingRowColors(True)
         self.entry_table.setSelectionMode(QAbstractItemView.NoSelection)
         self.entry_table.setSortingEnabled(False)
         self.entry_table.setRowCount(1)
         self.entry_table.setColumnCount(10)
         self.entry_table.horizontalHeader().setCascadingSectionResizes(True)
+        self.entry_table.horizontalHeader().setMinimumSectionSize(100)
+        self.entry_table.horizontalHeader().setDefaultSectionSize(200)
         self.entry_table.horizontalHeader().setStretchLastSection(False)
+        self.entry_table.verticalHeader().setMinimumSectionSize(20)
+        self.entry_table.verticalHeader().setDefaultSectionSize(40)
 
         self.verticalLayout.addWidget(self.entry_table)
 

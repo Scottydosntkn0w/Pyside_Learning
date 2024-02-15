@@ -218,10 +218,8 @@ def Update_Table(self, file_name):
 
             if self.radioButton_Winter.isChecked():
                 with open(file_name, "r") as fileInput:
-                    csvFile = pandas.read_csv(fileInput)
-                    #need "Timestamp","ID_REC","Property_2_Value" to "Protein","Property_2_H" to "H", "Pro" 
-                    csvFile = csvFile[['Timestamp','ID_REC',"Property_2_Value","Property_2_H","Property_2_S"]]
-                    csvFile.rename(columns={'Property_2_Value': 'Protein', 'Property_2_H': 'H', "Property_2_S":"S"}, inplace=True)
+                    csvFile = pandas.read_csv(fileInput, sep=";", decimal=",",usecols=[0,1,7,9,10],skiprows=1, header=None)
+                    csvFile.columns = ['Timestamp','ID_REC','Protein','H','S']
                     csvFile_rev = csvFile[::-1].reset_index(drop=True)
                     formatted_panda = csvFile_rev
 
@@ -229,47 +227,95 @@ def Update_Table(self, file_name):
             no_columns = len(formatted_panda.columns)
             self.entry_table.setColumnCount(no_columns)
             self.entry_table.setRowCount(no_row)
-            for col in formatted_panda.columns:
-                        text = col
-                        index = formatted_panda.columns.to_list().index(col)
-                        col = QTableWidgetItem(text)
-                        self.entry_table.setHorizontalHeaderItem(index,col)
-            for index, row in formatted_panda.iterrows():
-                row_num = index
-                for column in row:
-                    data = column
-                    col_num = row.to_list().index(column)
-                    col_name = formatted_panda.columns[col_num]
-                    cell_item = QTableWidgetItem(str(column))
-                    color = ""
-                    if col_name == "H":
-                        if data > 60:
-                            color = "red"
-                        else:
-                            color = "green"
-                        
-                    if col_name == "S":
-                        if data > 10:
-                            color = "red"
-                        else:
-                            color = "green"                           
-                    
-                    if col_name == "Protein":
-                        if data < 20 or data > 70:
-                            color = "red"
-                        else:
-                            color = "green"
-                    
-                    if color != "":
-                        cell_item.setBackground(QtGui.QColor(color))
+            rowNumber=0
+            rowBad_count = 0
+            try:
+                for col in formatted_panda.columns:
+                            text = col
+                            index = formatted_panda.columns.to_list().index(col)
+                            col = QTableWidgetItem(text)
+                            self.entry_table.setHorizontalHeaderItem(index,col)
+                for index, row in formatted_panda.iterrows():
+                    rowBad = False
 
-                    self.entry_table.setItem(row_num,col_num,cell_item)
-            
+                    row_num = index
+                    for column in row:
+                        data = column
+                        col_num = row.to_list().index(column)
+                        col_name = formatted_panda.columns[col_num]
+                        cell_item = QTableWidgetItem(str(column))
+                        color = ""
+                        try:
+                            if isinstance(data, str) == True and col_name in ("Protein","H","S"):
+                                data = data.replace(",",".")
+                                data = float(data)
+                                cell_item = QTableWidgetItem(str(data))
+
+                            if col_name == "H":
+                                if data > 60:
+                                    color = "red"
+                                else:
+                                    color = "green"
+                                
+                                if index == 0:
+                                    self.widget_2.updateValue(data)
+                                    
+                                
+                            if col_name == "S":
+                                if data > 10:
+                                    color = "red"
+                                else:
+                                    color = "green"                           
+                            
+                                if index == 0:
+                                    self.widget_3.updateValue(data)
+
+                            if col_name == "Protein":
+                                if data < 20 or data > 70:
+                                    color = "red"
+                                else:
+                                    color = "green"
+                            
+                                if index == 0:
+                                    self.widget.updateValue(data)
+
+                            if color == "red":
+                                 rowBad = True
+
+                        except Exception as e:
+                            cell_item = QTableWidgetItem("error")
+                            color = 'pink'
+                            print(f"error in cell parsing/ column: {col_name},index: {index},data: {data}, Exception: {e}")
+
+                        if color != "":
+                            cell_item.setBackground(QtGui.QColor(color))
+
+                        
+
+                        self.entry_table.setItem(row_num,col_num,cell_item)
+
+
+                    rowNumber = rowNumber + 1
+                    if rowBad == True:
+                        rowBad_count = rowBad_count + 1
+
+            except Exception as e:
+                print("error in cell parsing")
+                print(f"column: {col_name}")
+                print(f"index: {index}")
+                print(f'data: {data}')
+                
+                print(e)
+                 
             self.entry_table.resizeColumnsToContents()
             first_row = formatted_panda.iloc[0]
             self.last_protei_value_label.setText(str(first_row['Protein']))
             self.label_H_Value_Num.setText(str(first_row['H']))
             self.label_S_Value_Num.setText(str(first_row['S']))
+
+            
+            
+            print(f"Number of rows Bad: {rowBad_count} out of {rowNumber}")
         except Exception as e:
             print(e)
 
