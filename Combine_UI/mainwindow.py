@@ -48,11 +48,11 @@ def Set_Guage_1_Protein(self):
         #self.widget.setDisplayValueColor(R=R, G=G, B=B, Transparency=Transparency)
         self.widget.setGaugeTheme(0)
         #self.widget.setOuterCircleColor()
-        red_scale_start = .26
-        red_scale_end = .55
-        yellow_spread = .06
+        red_scale_start = .15
+        red_scale_end = .715
+        yellow_spread = .001
         self.widget.set_scale_polygon_colors([[red_scale_start, Qt.red],
-                                    [red_scale_start+yellow_spread, Qt.cyan],
+                                    [red_scale_start+yellow_spread, Qt.yellow],
                                     [red_scale_start+(yellow_spread*2), Qt.green],
                                     [red_scale_end-(yellow_spread*2), Qt.green],
                                     [red_scale_end-yellow_spread, Qt.yellow],
@@ -271,7 +271,7 @@ def Update_Table(self, file_name):
                                     self.widget_3.updateValue(data)
 
                             if col_name == "Protein":
-                                if data < 20 or data > 70:
+                                if data < 5 or data > 80:
                                     color = "red"
                                 else:
                                     color = "green"
@@ -285,7 +285,7 @@ def Update_Table(self, file_name):
                         except Exception as e:
                             cell_item = QTableWidgetItem("error")
                             color = 'pink'
-                            print(f"error in cell parsing/ column: {col_name},index: {index},data: {data}, Exception: {e}")
+                            print(f"error in cell parsing column: {col_name},index: {index},data: {data}, Exception: {e}")
 
                         if color != "":
                             cell_item.setBackground(QtGui.QColor(color))
@@ -307,7 +307,7 @@ def Update_Table(self, file_name):
                 
                 print(e)
                 self.textBrowser_Error.setPlainText("error in cell parsing,  " + str(e))
-                self.textBrowser_Error.setTextBackgroundColor(QtGui.QColor(Qt.red))
+                self.textBrowser_Error.setStyleSheet(u"background-color: rgb(255, 0, 0);")
             self.entry_table.resizeColumnsToContents()
             first_row = formatted_panda.iloc[0]
             self.last_protei_value_label.setText(str(first_row['Protein']))
@@ -322,10 +322,11 @@ def Update_Table(self, file_name):
             
             print(f"Number of rows Bad: {rowBad_count} out of {rowNumber}")
             self.textBrowser_Error.setPlainText("")
+            self.textBrowser_Error.setStyleSheet(u"background-color: rgb(0, 255, 0);")
         except Exception as e:
             print(e)
             self.textBrowser_Error.setPlainText(str(e))
-            self.textBrowser_Error.setTextBackgroundColor(QtGui.QColor(Qt.red))
+            self.textBrowser_Error.setStyleSheet(u"background-color: rgb(255, 0, 0);")
 
 
 

@@ -28,7 +28,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1883, 1055)
+        MainWindow.resize(1874, 1097)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout_2 = QHBoxLayout(self.centralwidget)
@@ -67,58 +67,16 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.radioButton_Other)
 
-        self.groupBoxStats = QGroupBox(self.groupBox_options)
-        self.groupBoxStats.setObjectName(u"groupBoxStats")
-        self.groupBoxStats.setGeometry(QRect(10, 160, 221, 111))
-        self.verticalLayoutWidget = QWidget(self.groupBoxStats)
-        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(10, 20, 51, 80))
-        self.verticalLayout_6 = QVBoxLayout(self.verticalLayoutWidget)
-        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.label_Bad = QLabel(self.verticalLayoutWidget)
-        self.label_Bad.setObjectName(u"label_Bad")
-
-        self.verticalLayout_6.addWidget(self.label_Bad)
-
-        self.label_Total = QLabel(self.verticalLayoutWidget)
-        self.label_Total.setObjectName(u"label_Total")
-
-        self.verticalLayout_6.addWidget(self.label_Total)
-
-        self.label_PerGood = QLabel(self.verticalLayoutWidget)
-        self.label_PerGood.setObjectName(u"label_PerGood")
-
-        self.verticalLayout_6.addWidget(self.label_PerGood)
-
-        self.verticalLayoutWidget_2 = QWidget(self.groupBoxStats)
-        self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
-        self.verticalLayoutWidget_2.setGeometry(QRect(70, 20, 141, 80))
-        self.verticalLayout_7 = QVBoxLayout(self.verticalLayoutWidget_2)
-        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.label_Bad_Num = QLabel(self.verticalLayoutWidget_2)
-        self.label_Bad_Num.setObjectName(u"label_Bad_Num")
-
-        self.verticalLayout_7.addWidget(self.label_Bad_Num)
-
-        self.label_Total_Num = QLabel(self.verticalLayoutWidget_2)
-        self.label_Total_Num.setObjectName(u"label_Total_Num")
-
-        self.verticalLayout_7.addWidget(self.label_Total_Num)
-
-        self.label_PerGood_Num = QLabel(self.verticalLayoutWidget_2)
-        self.label_PerGood_Num.setObjectName(u"label_PerGood_Num")
-
-        self.verticalLayout_7.addWidget(self.label_PerGood_Num)
-
         self.groupBox_Error = QGroupBox(self.groupBox_options)
         self.groupBox_Error.setObjectName(u"groupBox_Error")
-        self.groupBox_Error.setGeometry(QRect(20, 280, 211, 231))
+        self.groupBox_Error.setGeometry(QRect(10, 160, 211, 231))
         self.textBrowser_Error = QTextBrowser(self.groupBox_Error)
         self.textBrowser_Error.setObjectName(u"textBrowser_Error")
-        self.textBrowser_Error.setEnabled(False)
+        self.textBrowser_Error.setEnabled(True)
         self.textBrowser_Error.setGeometry(QRect(10, 30, 191, 191))
+        self.textBrowser_Error.setMouseTracking(True)
+        self.textBrowser_Error.setAutoFillBackground(True)
+        self.textBrowser_Error.setStyleSheet(u"background-color: rgb(255, 0, 0);")
 
         self.horizontalLayout_2.addWidget(self.groupBox_options)
 
@@ -184,7 +142,7 @@ class Ui_MainWindow(object):
 
         self.widget = AnalogGaugeWidget(self.FirstGraph_QFrame)
         self.widget.setObjectName(u"widget")
-        self.widget.setMinimumSize(QSize(0, 400))
+        self.widget.setMinimumSize(QSize(300, 300))
 
         self.verticalLayout_3.addWidget(self.widget)
 
@@ -214,7 +172,7 @@ class Ui_MainWindow(object):
 
         self.widget_2 = AnalogGaugeWidget(self.SecondGraph_QFrame)
         self.widget_2.setObjectName(u"widget_2")
-        self.widget_2.setMinimumSize(QSize(513, 400))
+        self.widget_2.setMinimumSize(QSize(300, 300))
 
         self.verticalLayout_4.addWidget(self.widget_2)
 
@@ -245,7 +203,7 @@ class Ui_MainWindow(object):
 
         self.widget_3 = AnalogGaugeWidget(self.ThirGraph_QFrame)
         self.widget_3.setObjectName(u"widget_3")
-        self.widget_3.setMinimumSize(QSize(0, 400))
+        self.widget_3.setMinimumSize(QSize(300, 300))
         self.widget_3.setMouseTracking(False)
 
         self.verticalLayout_5.addWidget(self.widget_3)
@@ -285,22 +243,112 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.splitter_2)
 
+        self.groupBoxStats = QGroupBox(self.centralwidget)
+        self.groupBoxStats.setObjectName(u"groupBoxStats")
+        sizePolicy5 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(1)
+        sizePolicy5.setHeightForWidth(self.groupBoxStats.sizePolicy().hasHeightForWidth())
+        self.groupBoxStats.setSizePolicy(sizePolicy5)
+        self.groupBoxStats.setMinimumSize(QSize(0, 80))
+        font2 = QFont()
+        font2.setBold(True)
+        font2.setStrikeOut(False)
+        self.groupBoxStats.setFont(font2)
+        self.groupBoxStats.setAcceptDrops(False)
+        self.horizontalLayoutWidget_4 = QWidget(self.groupBoxStats)
+        self.horizontalLayoutWidget_4.setObjectName(u"horizontalLayoutWidget_4")
+        self.horizontalLayoutWidget_4.setGeometry(QRect(0, 10, 1591, 71))
+        self.horizontalLayout_9 = QHBoxLayout(self.horizontalLayoutWidget_4)
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.label_Bad = QLabel(self.horizontalLayoutWidget_4)
+        self.label_Bad.setObjectName(u"label_Bad")
+        font3 = QFont()
+        font3.setPointSize(20)
+        font3.setBold(True)
+        font3.setStrikeOut(False)
+        self.label_Bad.setFont(font3)
+        self.label_Bad.setIndent(1)
+
+        self.horizontalLayout_6.addWidget(self.label_Bad)
+
+        self.label_Bad_Num = QLabel(self.horizontalLayoutWidget_4)
+        self.label_Bad_Num.setObjectName(u"label_Bad_Num")
+        sizePolicy4.setHeightForWidth(self.label_Bad_Num.sizePolicy().hasHeightForWidth())
+        self.label_Bad_Num.setSizePolicy(sizePolicy4)
+        self.label_Bad_Num.setFont(font3)
+
+        self.horizontalLayout_6.addWidget(self.label_Bad_Num)
+
+
+        self.horizontalLayout_9.addLayout(self.horizontalLayout_6)
+
+        self.horizontalLayout_7 = QHBoxLayout()
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.label_Total = QLabel(self.horizontalLayoutWidget_4)
+        self.label_Total.setObjectName(u"label_Total")
+        self.label_Total.setFont(font3)
+        self.label_Total.setIndent(1)
+
+        self.horizontalLayout_7.addWidget(self.label_Total)
+
+        self.label_Total_Num = QLabel(self.horizontalLayoutWidget_4)
+        self.label_Total_Num.setObjectName(u"label_Total_Num")
+        sizePolicy4.setHeightForWidth(self.label_Total_Num.sizePolicy().hasHeightForWidth())
+        self.label_Total_Num.setSizePolicy(sizePolicy4)
+        self.label_Total_Num.setFont(font3)
+
+        self.horizontalLayout_7.addWidget(self.label_Total_Num)
+
+
+        self.horizontalLayout_9.addLayout(self.horizontalLayout_7)
+
+        self.horizontalLayout_8 = QHBoxLayout()
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.label_PerGood = QLabel(self.horizontalLayoutWidget_4)
+        self.label_PerGood.setObjectName(u"label_PerGood")
+        self.label_PerGood.setFont(font3)
+        self.label_PerGood.setScaledContents(True)
+        self.label_PerGood.setIndent(1)
+
+        self.horizontalLayout_8.addWidget(self.label_PerGood)
+
+        self.label_PerGood_Num = QLabel(self.horizontalLayoutWidget_4)
+        self.label_PerGood_Num.setObjectName(u"label_PerGood_Num")
+        sizePolicy4.setHeightForWidth(self.label_PerGood_Num.sizePolicy().hasHeightForWidth())
+        self.label_PerGood_Num.setSizePolicy(sizePolicy4)
+        self.label_PerGood_Num.setFont(font3)
+
+        self.horizontalLayout_8.addWidget(self.label_PerGood_Num)
+
+
+        self.horizontalLayout_9.addLayout(self.horizontalLayout_8)
+
+
+        self.verticalLayout.addWidget(self.groupBoxStats)
+
         self.entry_table = QTableWidget(self.centralwidget)
         if (self.entry_table.columnCount() < 10):
             self.entry_table.setColumnCount(10)
         if (self.entry_table.rowCount() < 1):
             self.entry_table.setRowCount(1)
         self.entry_table.setObjectName(u"entry_table")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(7)
-        sizePolicy5.setHeightForWidth(self.entry_table.sizePolicy().hasHeightForWidth())
-        self.entry_table.setSizePolicy(sizePolicy5)
-        font2 = QFont()
-        font2.setFamilies([u"Segoe MDL2 Assets"])
-        font2.setPointSize(14)
-        self.entry_table.setFont(font2)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(7)
+        sizePolicy6.setHeightForWidth(self.entry_table.sizePolicy().hasHeightForWidth())
+        self.entry_table.setSizePolicy(sizePolicy6)
+        font4 = QFont()
+        font4.setFamilies([u"Segoe UI"])
+        font4.setPointSize(20)
+        font4.setBold(False)
+        font4.setItalic(False)
+        self.entry_table.setFont(font4)
         self.entry_table.viewport().setProperty("cursor", QCursor(Qt.CrossCursor))
+        self.entry_table.setStyleSheet(u"font: 20pt \"Segoe UI\";")
         self.entry_table.setLineWidth(2)
         self.entry_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
         self.entry_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -319,7 +367,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.entry_table)
 
         self.verticalLayout.setStretch(0, 1)
-        self.verticalLayout.setStretch(3, 1)
+        self.verticalLayout.setStretch(4, 1)
 
         self.horizontalLayout_2.addLayout(self.verticalLayout)
 
@@ -328,7 +376,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1883, 22))
+        self.menubar.setGeometry(QRect(0, 0, 1874, 22))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -349,13 +397,6 @@ class Ui_MainWindow(object):
         self.radioButton_Almaco.setText(QCoreApplication.translate("MainWindow", u"Almaco", None))
         self.radioButton_Winter.setText(QCoreApplication.translate("MainWindow", u"Winter", None))
         self.radioButton_Other.setText(QCoreApplication.translate("MainWindow", u"Other", None))
-        self.groupBoxStats.setTitle(QCoreApplication.translate("MainWindow", u"Statistics", None))
-        self.label_Bad.setText(QCoreApplication.translate("MainWindow", u"Bad:", None))
-        self.label_Total.setText(QCoreApplication.translate("MainWindow", u"Total:", None))
-        self.label_PerGood.setText(QCoreApplication.translate("MainWindow", u"% Good:", None))
-        self.label_Bad_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_Total_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_PerGood_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.groupBox_Error.setTitle(QCoreApplication.translate("MainWindow", u"Error Message", None))
         self.textBrowser_Error.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
@@ -376,5 +417,12 @@ class Ui_MainWindow(object):
         self.label_S_Value_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.file_name_label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.File_timestamp_Label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.groupBoxStats.setTitle(QCoreApplication.translate("MainWindow", u"Statistics", None))
+        self.label_Bad.setText(QCoreApplication.translate("MainWindow", u"Bad:", None))
+        self.label_Bad_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_Total.setText(QCoreApplication.translate("MainWindow", u"Total:", None))
+        self.label_Total_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_PerGood.setText(QCoreApplication.translate("MainWindow", u"% Good:", None))
+        self.label_PerGood_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
     # retranslateUi
 

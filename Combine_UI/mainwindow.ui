@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1883</width>
-    <height>1055</height>
+    <width>1874</width>
+    <height>1097</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -87,90 +87,11 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QGroupBox" name="groupBoxStats">
+      <widget class="QGroupBox" name="groupBox_Error">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>160</y>
-         <width>221</width>
-         <height>111</height>
-        </rect>
-       </property>
-       <property name="title">
-        <string>Statistics</string>
-       </property>
-       <widget class="QWidget" name="verticalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>20</y>
-          <width>51</width>
-          <height>80</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_6">
-         <item>
-          <widget class="QLabel" name="label_Bad">
-           <property name="text">
-            <string>Bad:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_Total">
-           <property name="text">
-            <string>Total:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_PerGood">
-           <property name="text">
-            <string>% Good:</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="verticalLayoutWidget_2">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>20</y>
-          <width>141</width>
-          <height>80</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_7">
-         <item>
-          <widget class="QLabel" name="label_Bad_Num">
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_Total_Num">
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_PerGood_Num">
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
-      <widget class="QGroupBox" name="groupBox_Error">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>280</y>
          <width>211</width>
          <height>231</height>
         </rect>
@@ -180,7 +101,7 @@
        </property>
        <widget class="QTextBrowser" name="textBrowser_Error">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
@@ -189,6 +110,15 @@
           <width>191</width>
           <height>191</height>
          </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 0, 0);</string>
         </property>
         <property name="html">
          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -206,7 +136,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </widget>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,0,1">
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,0,0,1">
       <property name="leftMargin">
        <number>10</number>
       </property>
@@ -324,8 +254,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <widget class="AnalogGaugeWidget" name="widget" native="true">
              <property name="minimumSize">
               <size>
-               <width>0</width>
-               <height>400</height>
+               <width>300</width>
+               <height>300</height>
               </size>
              </property>
             </widget>
@@ -364,8 +294,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <widget class="AnalogGaugeWidget" name="widget_2" native="true">
              <property name="minimumSize">
               <size>
-               <width>513</width>
-               <height>400</height>
+               <width>300</width>
+               <height>300</height>
               </size>
              </property>
             </widget>
@@ -410,8 +340,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <widget class="AnalogGaugeWidget" name="widget_3" native="true">
              <property name="minimumSize">
               <size>
-               <width>0</width>
-               <height>400</height>
+               <width>300</width>
+               <height>300</height>
               </size>
              </property>
              <property name="mouseTracking">
@@ -471,6 +401,172 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </widget>
       </item>
       <item>
+       <widget class="QGroupBox" name="groupBoxStats">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>80</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+          <strikeout>false</strikeout>
+         </font>
+        </property>
+        <property name="acceptDrops">
+         <bool>false</bool>
+        </property>
+        <property name="title">
+         <string>Statistics</string>
+        </property>
+        <widget class="QWidget" name="horizontalLayoutWidget_4">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>10</y>
+           <width>1591</width>
+           <height>71</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QLabel" name="label_Bad">
+              <property name="font">
+               <font>
+                <pointsize>20</pointsize>
+                <bold>true</bold>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="text">
+               <string>Bad:</string>
+              </property>
+              <property name="indent">
+               <number>1</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_Bad_Num">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>1</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>20</pointsize>
+                <bold>true</bold>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="text">
+               <string>TextLabel</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QLabel" name="label_Total">
+              <property name="font">
+               <font>
+                <pointsize>20</pointsize>
+                <bold>true</bold>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="text">
+               <string>Total:</string>
+              </property>
+              <property name="indent">
+               <number>1</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_Total_Num">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>1</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>20</pointsize>
+                <bold>true</bold>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="text">
+               <string>TextLabel</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QLabel" name="label_PerGood">
+              <property name="font">
+               <font>
+                <pointsize>20</pointsize>
+                <bold>true</bold>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="text">
+               <string>% Good:</string>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="indent">
+               <number>1</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_PerGood_Num">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>1</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>20</pointsize>
+                <bold>true</bold>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="text">
+               <string>TextLabel</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item>
        <widget class="QTableWidget" name="entry_table">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -480,12 +576,17 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </property>
         <property name="font">
          <font>
-          <family>Segoe MDL2 Assets</family>
-          <pointsize>14</pointsize>
+          <family>Segoe UI</family>
+          <pointsize>20</pointsize>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="cursor" stdset="0">
          <cursorShape>CrossCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 20pt &quot;Segoe UI&quot;;</string>
         </property>
         <property name="lineWidth">
          <number>2</number>
@@ -551,7 +652,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1883</width>
+     <width>1874</width>
      <height>22</height>
     </rect>
    </property>
