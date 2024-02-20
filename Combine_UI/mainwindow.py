@@ -24,9 +24,9 @@ def Set_Guage_2_H(self):
         # Setup Guage
         self.widget_2.units = "H"
         self.widget_2.minValue = 0
-        self.widget_2.maxValue = 100
+        self.widget_2.maxValue = 20
         #Divisions
-        self.widget_2.scalaCount = 10
+        self.widget_2.scalaCount = 4
 
         self.widget_2.updateValue(self.widget_2.minValue)
         self.widget_2.updateAngleOffset(0)
@@ -49,7 +49,7 @@ def Set_Guage_2_H(self):
         #self.widget_2.setDisplayValueColor(R=R, G=G, B=B, Transparency=Transparency)
         self.widget_2.setGaugeTheme(0)
         #self.widget_2.setOuterCircleColor()
-        red_scale_start = .29
+        red_scale_start = .369
         red_scale_end = 1
         yellow_spread = .01
         self.widget_2.set_scale_polygon_colors([[red_scale_start, Qt.red],
@@ -58,6 +58,8 @@ def Set_Guage_2_H(self):
                                     [red_scale_end-(yellow_spread*2), Qt.green],
                                     [red_scale_end-yellow_spread, Qt.yellow],
                                     [red_scale_end, Qt.red]])
+
+
         # self.widget_2.setCustomGaugeTheme(
         #     color1 = "red",
         #     color2= "purple",
@@ -84,9 +86,9 @@ def Set_Guage_3_S(self):
         # Setup Guage
         self.widget_3.units = "S"
         self.widget_3.minValue = 0
-        self.widget_3.maxValue = 20
+        self.widget_3.maxValue = 100
         #Divisions
-        self.widget_3.scalaCount = 4
+        self.widget_3.scalaCount = 10
 
         self.widget_3.updateValue(self.widget_3.minValue)
         self.widget_3.updateAngleOffset(0)
@@ -109,7 +111,7 @@ def Set_Guage_3_S(self):
         #self.widget_3.setDisplayValueColor(R=R, G=G, B=B, Transparency=Transparency)
         self.widget_3.setGaugeTheme(0)
         #self.widget_3.setOuterCircleColor()
-        red_scale_start = .369
+        red_scale_start = .29
         red_scale_end = 1
         yellow_spread = .01
         self.widget_3.set_scale_polygon_colors([[red_scale_start, Qt.red],
@@ -148,7 +150,7 @@ def Update_Table(self, file_name):
                 with open(file_name, "r") as fileInput:
                     csvFile = pandas.read_csv(fileInput)
                     #need "Timestamp","ID_REC","Property_2_Value" to "Protein","Property_2_H" to "H", "Pro" 
-                    csvFile = csvFile[['Timestamp','ID_REC',"Property_2_Value","Property_2_H","Property_2_S"]]
+                    csvFile = csvFile[['Timestamp','ID_REC',"Property_1_Value","Property_2_Value","Property_2_H","Property_2_S"]]
                     csvFile.rename(columns={'Property_2_Value': 'Protein', 'Property_2_H': 'H', "Property_2_S":"S"}, inplace=True)
                     csvFile_rev = csvFile[::-1].reset_index(drop=True)
                     formatted_panda = csvFile_rev
@@ -201,7 +203,7 @@ def Update_Table(self, file_name):
                                 cell_item.setTextAlignment(Qt.AlignRight)
 
                             if col_name == "H":
-                                if data > 60:
+                                if data > 10:
                                     color = "red"
                                 else:
                                     color = "green"
@@ -211,7 +213,7 @@ def Update_Table(self, file_name):
                                     
                                 
                             if col_name == "S":
-                                if data > 10:
+                                if data > 60:
                                     color = "red"
                                 else:
                                     color = "green"                           
