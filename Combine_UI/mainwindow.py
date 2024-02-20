@@ -19,65 +19,6 @@ from matplotlib.figure import Figure
 
 timer = QTimer()
 
-def Set_Guage_1_Protein(self):
-        # Setup Guage
-        self.widget.units = "%"
-        self.widget.minValue = 0
-        self.widget.maxValue = 100
-        #Divisions
-        self.widget.scalaCount = 10
-
-        self.widget.updateValue(self.widget.minValue)
-        self.widget.updateAngleOffset(0)
-        self.widget.setScaleStartAngle(135)
-        self.widget.setTotalScaleAngleSize(270)
-        self.widget.setEnableBarGraph(False)
-        self.widget.setEnableValueText(True)
-        self.widget.setEnableCenterPoint(False)
-        self.widget.setEnableNeedlePolygon(True)
-
-        self.widget.setEnableScaleText(True)
-        self.widget.setEnableScalePolygon(False)
-        self.widget.setEnableBigScaleGrid(True)
-        self.widget.setEnableFineScaleGrid(True)
-        #self.widget.setGaugeColorOuterRadiusFactor(1000)
-        #self.widget.setGaugeColorInnerRadiusFactor(600)
-        self.widget.setNeedleColor(R=0, G=0, B=0, Transparency=255)
-        #self.widget.setNeedleColorOnDrag(R=R, G=G, B=B, Transparency=Transparency)
-        #self.widget.setScaleValueColor(R=R, G=G, B=B, Transparency=Transparency)
-        #self.widget.setDisplayValueColor(R=R, G=G, B=B, Transparency=Transparency)
-        self.widget.setGaugeTheme(0)
-        #self.widget.setOuterCircleColor()
-        red_scale_start = .15
-        red_scale_end = .715
-        yellow_spread = .001
-        # self.widget.set_scale_polygon_colors([[red_scale_start, Qt.red],
-        #                             [red_scale_start+yellow_spread, Qt.yellow],
-        #                             [red_scale_start+(yellow_spread*2), Qt.green],
-        #                             [red_scale_end-(yellow_spread*2), Qt.green],
-        #                             [red_scale_end-yellow_spread, Qt.yellow],
-        #                             [red_scale_end, Qt.red]])
-        # self.widget.setCustomGaugeTheme(
-        #     color1 = "red",
-        #     color2= "purple",
-        #     color3 = "blue"
-        # )
-
-        # self.widget.setScalePolygonColor(
-        #     color1 = "green"
-        # )
-
-        # self.widget.setNeedleCenterColor(
-        #     color1 = "white"
-        # )
-
-        # self.widget.setOuterCircleColor(
-        #     color1 = "black"
-        # )
-
-        #self.widget.setBigScaleColor("#005275")
-        #self.widget.setFineScaleColor("#005275")
-        self.widget.setMouseTracking(False)
 
 def Set_Guage_2_H(self):
         # Setup Guage
@@ -285,7 +226,8 @@ def Update_Table(self, file_name):
                                     color = ""
                             
                                 if index == 0:
-                                    self.widget.updateValue(data)
+                                    #self.widget.updateValue(data)
+                                    pass
 
                             if color == "red":
                                  rowBad = True
@@ -318,7 +260,7 @@ def Update_Table(self, file_name):
                 self.textBrowser_Error.setStyleSheet(u"background-color: rgb(255, 0, 0);")
             self.entry_table.resizeColumnsToContents()
             first_row = formatted_panda.iloc[0]
-            self.last_protei_value_label.setText(str(first_row['Protein']))
+            
             self.label_H_Value_Num.setText(str(first_row['H']))
             self.label_S_Value_Num.setText(str(first_row['S']))
             self.label_Bad_Num.setText(str(rowBad_count))
@@ -348,10 +290,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.app = app
 
 
-        Set_Guage_1_Protein(self)
+
         Set_Guage_2_H(self)
         Set_Guage_3_S(self)
-        self.widget.updateValue(22)
+        
 
 
 

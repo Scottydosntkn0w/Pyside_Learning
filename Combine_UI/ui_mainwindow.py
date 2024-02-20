@@ -122,67 +122,47 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.FirstGraph_QFrame = QFrame(self.centralwidget)
-        self.FirstGraph_QFrame.setObjectName(u"FirstGraph_QFrame")
-        self.FirstGraph_QFrame.setMinimumSize(QSize(0, 100))
-        self.FirstGraph_QFrame.setFrameShape(QFrame.StyledPanel)
-        self.FirstGraph_QFrame.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_3 = QVBoxLayout(self.FirstGraph_QFrame)
+        self.horizontalLayout_10 = QHBoxLayout()
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.entry_table = QTableWidget(self.centralwidget)
+        if (self.entry_table.columnCount() < 10):
+            self.entry_table.setColumnCount(10)
+        if (self.entry_table.rowCount() < 1):
+            self.entry_table.setRowCount(1)
+        self.entry_table.setObjectName(u"entry_table")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(7)
+        sizePolicy3.setHeightForWidth(self.entry_table.sizePolicy().hasHeightForWidth())
+        self.entry_table.setSizePolicy(sizePolicy3)
+        font1 = QFont()
+        font1.setFamilies([u"Segoe UI"])
+        font1.setPointSize(20)
+        font1.setBold(False)
+        font1.setItalic(False)
+        self.entry_table.setFont(font1)
+        self.entry_table.viewport().setProperty("cursor", QCursor(Qt.CrossCursor))
+        self.entry_table.setStyleSheet(u"font: 20pt \"Segoe UI\";")
+        self.entry_table.setLineWidth(2)
+        self.entry_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.entry_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.entry_table.setAlternatingRowColors(True)
+        self.entry_table.setSelectionMode(QAbstractItemView.NoSelection)
+        self.entry_table.setSortingEnabled(False)
+        self.entry_table.setRowCount(1)
+        self.entry_table.setColumnCount(10)
+        self.entry_table.horizontalHeader().setCascadingSectionResizes(True)
+        self.entry_table.horizontalHeader().setMinimumSectionSize(100)
+        self.entry_table.horizontalHeader().setDefaultSectionSize(200)
+        self.entry_table.horizontalHeader().setStretchLastSection(False)
+        self.entry_table.verticalHeader().setMinimumSectionSize(20)
+        self.entry_table.verticalHeader().setDefaultSectionSize(40)
+
+        self.horizontalLayout_10.addWidget(self.entry_table)
+
+        self.verticalLayout_3 = QVBoxLayout()
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.horizontalLayout_3 = QHBoxLayout()
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.protein_label = QLabel(self.FirstGraph_QFrame)
-        self.protein_label.setObjectName(u"protein_label")
-
-        self.horizontalLayout_3.addWidget(self.protein_label)
-
-        self.last_protei_value_label = QLabel(self.FirstGraph_QFrame)
-        self.last_protei_value_label.setObjectName(u"last_protei_value_label")
-
-        self.horizontalLayout_3.addWidget(self.last_protei_value_label)
-
-
-        self.verticalLayout_3.addLayout(self.horizontalLayout_3)
-
-        self.widget = AnalogGaugeWidget(self.FirstGraph_QFrame)
-        self.widget.setObjectName(u"widget")
-        self.widget.setMinimumSize(QSize(300, 300))
-
-        self.verticalLayout_3.addWidget(self.widget)
-
-
-        self.horizontalLayout.addWidget(self.FirstGraph_QFrame)
-
-        self.SecondGraph_QFrame = QFrame(self.centralwidget)
-        self.SecondGraph_QFrame.setObjectName(u"SecondGraph_QFrame")
-        self.SecondGraph_QFrame.setFrameShape(QFrame.StyledPanel)
-        self.SecondGraph_QFrame.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_4 = QVBoxLayout(self.SecondGraph_QFrame)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.horizontalLayout_4 = QHBoxLayout()
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.label_H_Value = QLabel(self.SecondGraph_QFrame)
-        self.label_H_Value.setObjectName(u"label_H_Value")
-
-        self.horizontalLayout_4.addWidget(self.label_H_Value)
-
-        self.label_H_Value_Num = QLabel(self.SecondGraph_QFrame)
-        self.label_H_Value_Num.setObjectName(u"label_H_Value_Num")
-
-        self.horizontalLayout_4.addWidget(self.label_H_Value_Num)
-
-
-        self.verticalLayout_4.addLayout(self.horizontalLayout_4)
-
-        self.widget_2 = AnalogGaugeWidget(self.SecondGraph_QFrame)
-        self.widget_2.setObjectName(u"widget_2")
-        self.widget_2.setMinimumSize(QSize(300, 300))
-
-        self.verticalLayout_4.addWidget(self.widget_2)
-
-
-        self.horizontalLayout.addWidget(self.SecondGraph_QFrame)
-
+        self.verticalLayout_3.setContentsMargins(0, -1, -1, -1)
         self.ThirGraph_QFrame = QFrame(self.centralwidget)
         self.ThirGraph_QFrame.setObjectName(u"ThirGraph_QFrame")
         self.ThirGraph_QFrame.setMinimumSize(QSize(0, 100))
@@ -213,7 +193,43 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.addWidget(self.widget_3)
 
 
-        self.horizontalLayout.addWidget(self.ThirGraph_QFrame)
+        self.verticalLayout_3.addWidget(self.ThirGraph_QFrame)
+
+        self.SecondGraph_QFrame = QFrame(self.centralwidget)
+        self.SecondGraph_QFrame.setObjectName(u"SecondGraph_QFrame")
+        self.SecondGraph_QFrame.setFrameShape(QFrame.StyledPanel)
+        self.SecondGraph_QFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_4 = QVBoxLayout(self.SecondGraph_QFrame)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.label_H_Value = QLabel(self.SecondGraph_QFrame)
+        self.label_H_Value.setObjectName(u"label_H_Value")
+
+        self.horizontalLayout_4.addWidget(self.label_H_Value)
+
+        self.label_H_Value_Num = QLabel(self.SecondGraph_QFrame)
+        self.label_H_Value_Num.setObjectName(u"label_H_Value_Num")
+
+        self.horizontalLayout_4.addWidget(self.label_H_Value_Num)
+
+
+        self.verticalLayout_4.addLayout(self.horizontalLayout_4)
+
+        self.widget_2 = AnalogGaugeWidget(self.SecondGraph_QFrame)
+        self.widget_2.setObjectName(u"widget_2")
+        self.widget_2.setMinimumSize(QSize(300, 300))
+
+        self.verticalLayout_4.addWidget(self.widget_2)
+
+
+        self.verticalLayout_3.addWidget(self.SecondGraph_QFrame)
+
+
+        self.horizontalLayout_10.addLayout(self.verticalLayout_3)
+
+
+        self.horizontalLayout.addLayout(self.horizontalLayout_10)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -223,14 +239,14 @@ class Ui_MainWindow(object):
         self.splitter_2.setOrientation(Qt.Horizontal)
         self.file_name_label = QLabel(self.splitter_2)
         self.file_name_label.setObjectName(u"file_name_label")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy3.setHorizontalStretch(3)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.file_name_label.sizePolicy().hasHeightForWidth())
-        self.file_name_label.setSizePolicy(sizePolicy3)
-        font1 = QFont()
-        font1.setPointSize(20)
-        self.file_name_label.setFont(font1)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy4.setHorizontalStretch(3)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.file_name_label.sizePolicy().hasHeightForWidth())
+        self.file_name_label.setSizePolicy(sizePolicy4)
+        font2 = QFont()
+        font2.setPointSize(20)
+        self.file_name_label.setFont(font2)
         self.file_name_label.setFrameShape(QFrame.Panel)
         self.file_name_label.setFrameShadow(QFrame.Raised)
         self.file_name_label.setLineWidth(1)
@@ -238,27 +254,27 @@ class Ui_MainWindow(object):
         self.splitter_2.addWidget(self.file_name_label)
         self.File_timestamp_Label = QLabel(self.splitter_2)
         self.File_timestamp_Label.setObjectName(u"File_timestamp_Label")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy4.setHorizontalStretch(1)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.File_timestamp_Label.sizePolicy().hasHeightForWidth())
-        self.File_timestamp_Label.setSizePolicy(sizePolicy4)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy5.setHorizontalStretch(1)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.File_timestamp_Label.sizePolicy().hasHeightForWidth())
+        self.File_timestamp_Label.setSizePolicy(sizePolicy5)
         self.splitter_2.addWidget(self.File_timestamp_Label)
 
         self.verticalLayout.addWidget(self.splitter_2)
 
         self.groupBoxStats = QGroupBox(self.centralwidget)
         self.groupBoxStats.setObjectName(u"groupBoxStats")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(1)
-        sizePolicy5.setHeightForWidth(self.groupBoxStats.sizePolicy().hasHeightForWidth())
-        self.groupBoxStats.setSizePolicy(sizePolicy5)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(1)
+        sizePolicy6.setHeightForWidth(self.groupBoxStats.sizePolicy().hasHeightForWidth())
+        self.groupBoxStats.setSizePolicy(sizePolicy6)
         self.groupBoxStats.setMinimumSize(QSize(0, 80))
-        font2 = QFont()
-        font2.setBold(True)
-        font2.setStrikeOut(False)
-        self.groupBoxStats.setFont(font2)
+        font3 = QFont()
+        font3.setBold(True)
+        font3.setStrikeOut(False)
+        self.groupBoxStats.setFont(font3)
         self.groupBoxStats.setAcceptDrops(False)
         self.horizontalLayoutWidget_4 = QWidget(self.groupBoxStats)
         self.horizontalLayoutWidget_4.setObjectName(u"horizontalLayoutWidget_4")
@@ -270,20 +286,20 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.label_Bad = QLabel(self.horizontalLayoutWidget_4)
         self.label_Bad.setObjectName(u"label_Bad")
-        font3 = QFont()
-        font3.setPointSize(20)
-        font3.setBold(True)
-        font3.setStrikeOut(False)
-        self.label_Bad.setFont(font3)
+        font4 = QFont()
+        font4.setPointSize(20)
+        font4.setBold(True)
+        font4.setStrikeOut(False)
+        self.label_Bad.setFont(font4)
         self.label_Bad.setIndent(1)
 
         self.horizontalLayout_6.addWidget(self.label_Bad)
 
         self.label_Bad_Num = QLabel(self.horizontalLayoutWidget_4)
         self.label_Bad_Num.setObjectName(u"label_Bad_Num")
-        sizePolicy4.setHeightForWidth(self.label_Bad_Num.sizePolicy().hasHeightForWidth())
-        self.label_Bad_Num.setSizePolicy(sizePolicy4)
-        self.label_Bad_Num.setFont(font3)
+        sizePolicy5.setHeightForWidth(self.label_Bad_Num.sizePolicy().hasHeightForWidth())
+        self.label_Bad_Num.setSizePolicy(sizePolicy5)
+        self.label_Bad_Num.setFont(font4)
 
         self.horizontalLayout_6.addWidget(self.label_Bad_Num)
 
@@ -294,16 +310,16 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.label_Total = QLabel(self.horizontalLayoutWidget_4)
         self.label_Total.setObjectName(u"label_Total")
-        self.label_Total.setFont(font3)
+        self.label_Total.setFont(font4)
         self.label_Total.setIndent(1)
 
         self.horizontalLayout_7.addWidget(self.label_Total)
 
         self.label_Total_Num = QLabel(self.horizontalLayoutWidget_4)
         self.label_Total_Num.setObjectName(u"label_Total_Num")
-        sizePolicy4.setHeightForWidth(self.label_Total_Num.sizePolicy().hasHeightForWidth())
-        self.label_Total_Num.setSizePolicy(sizePolicy4)
-        self.label_Total_Num.setFont(font3)
+        sizePolicy5.setHeightForWidth(self.label_Total_Num.sizePolicy().hasHeightForWidth())
+        self.label_Total_Num.setSizePolicy(sizePolicy5)
+        self.label_Total_Num.setFont(font4)
 
         self.horizontalLayout_7.addWidget(self.label_Total_Num)
 
@@ -314,7 +330,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.label_PerGood = QLabel(self.horizontalLayoutWidget_4)
         self.label_PerGood.setObjectName(u"label_PerGood")
-        self.label_PerGood.setFont(font3)
+        self.label_PerGood.setFont(font4)
         self.label_PerGood.setScaledContents(True)
         self.label_PerGood.setIndent(1)
 
@@ -322,9 +338,9 @@ class Ui_MainWindow(object):
 
         self.label_PerGood_Num = QLabel(self.horizontalLayoutWidget_4)
         self.label_PerGood_Num.setObjectName(u"label_PerGood_Num")
-        sizePolicy4.setHeightForWidth(self.label_PerGood_Num.sizePolicy().hasHeightForWidth())
-        self.label_PerGood_Num.setSizePolicy(sizePolicy4)
-        self.label_PerGood_Num.setFont(font3)
+        sizePolicy5.setHeightForWidth(self.label_PerGood_Num.sizePolicy().hasHeightForWidth())
+        self.label_PerGood_Num.setSizePolicy(sizePolicy5)
+        self.label_PerGood_Num.setFont(font4)
 
         self.horizontalLayout_8.addWidget(self.label_PerGood_Num)
 
@@ -334,44 +350,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.groupBoxStats)
 
-        self.entry_table = QTableWidget(self.centralwidget)
-        if (self.entry_table.columnCount() < 10):
-            self.entry_table.setColumnCount(10)
-        if (self.entry_table.rowCount() < 1):
-            self.entry_table.setRowCount(1)
-        self.entry_table.setObjectName(u"entry_table")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        sizePolicy6.setHorizontalStretch(0)
-        sizePolicy6.setVerticalStretch(7)
-        sizePolicy6.setHeightForWidth(self.entry_table.sizePolicy().hasHeightForWidth())
-        self.entry_table.setSizePolicy(sizePolicy6)
-        font4 = QFont()
-        font4.setFamilies([u"Segoe UI"])
-        font4.setPointSize(20)
-        font4.setBold(False)
-        font4.setItalic(False)
-        self.entry_table.setFont(font4)
-        self.entry_table.viewport().setProperty("cursor", QCursor(Qt.CrossCursor))
-        self.entry_table.setStyleSheet(u"font: 20pt \"Segoe UI\";")
-        self.entry_table.setLineWidth(2)
-        self.entry_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
-        self.entry_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.entry_table.setAlternatingRowColors(True)
-        self.entry_table.setSelectionMode(QAbstractItemView.NoSelection)
-        self.entry_table.setSortingEnabled(False)
-        self.entry_table.setRowCount(1)
-        self.entry_table.setColumnCount(10)
-        self.entry_table.horizontalHeader().setCascadingSectionResizes(True)
-        self.entry_table.horizontalHeader().setMinimumSectionSize(100)
-        self.entry_table.horizontalHeader().setDefaultSectionSize(200)
-        self.entry_table.horizontalHeader().setStretchLastSection(False)
-        self.entry_table.verticalHeader().setMinimumSectionSize(20)
-        self.entry_table.verticalHeader().setDefaultSectionSize(40)
-
-        self.verticalLayout.addWidget(self.entry_table)
-
         self.verticalLayout.setStretch(0, 1)
-        self.verticalLayout.setStretch(4, 1)
 
         self.horizontalLayout_2.addLayout(self.verticalLayout)
 
@@ -413,12 +392,10 @@ class Ui_MainWindow(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Select File", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.protein_label.setText(QCoreApplication.translate("MainWindow", u"Protein", None))
-        self.last_protei_value_label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_H_Value.setText(QCoreApplication.translate("MainWindow", u"H Value", None))
-        self.label_H_Value_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.label_S_Value.setText(QCoreApplication.translate("MainWindow", u"S Value", None))
         self.label_S_Value_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_H_Value.setText(QCoreApplication.translate("MainWindow", u"H Value", None))
+        self.label_H_Value_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.file_name_label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.File_timestamp_Label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.groupBoxStats.setTitle(QCoreApplication.translate("MainWindow", u"Statistics", None))
