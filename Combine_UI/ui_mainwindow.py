@@ -73,7 +73,7 @@ class Ui_MainWindow(object):
 
         self.groupBox_Error = QGroupBox(self.groupBox_options)
         self.groupBox_Error.setObjectName(u"groupBox_Error")
-        self.groupBox_Error.setGeometry(QRect(10, 160, 211, 231))
+        self.groupBox_Error.setGeometry(QRect(10, 300, 211, 231))
         self.textBrowser_Error = QTextBrowser(self.groupBox_Error)
         self.textBrowser_Error.setObjectName(u"textBrowser_Error")
         self.textBrowser_Error.setEnabled(True)
@@ -81,6 +81,27 @@ class Ui_MainWindow(object):
         self.textBrowser_Error.setMouseTracking(True)
         self.textBrowser_Error.setAutoFillBackground(True)
         self.textBrowser_Error.setStyleSheet(u"background-color: rgb(255, 0, 0);")
+        self.groupBox_machineSetting_2 = QGroupBox(self.groupBox_options)
+        self.groupBox_machineSetting_2.setObjectName(u"groupBox_machineSetting_2")
+        self.groupBox_machineSetting_2.setGeometry(QRect(10, 160, 131, 131))
+        self.layoutWidget_2 = QWidget(self.groupBox_machineSetting_2)
+        self.layoutWidget_2.setObjectName(u"layoutWidget_2")
+        self.layoutWidget_2.setGeometry(QRect(10, 20, 94, 96))
+        self.verticalLayout_6 = QVBoxLayout(self.layoutWidget_2)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.radioButton_Soy = QRadioButton(self.layoutWidget_2)
+        self.radioButton_Soy.setObjectName(u"radioButton_Soy")
+        self.radioButton_Soy.setEnabled(True)
+        self.radioButton_Soy.setChecked(True)
+
+        self.verticalLayout_6.addWidget(self.radioButton_Soy)
+
+        self.radioButton_Yellow_Pea = QRadioButton(self.layoutWidget_2)
+        self.radioButton_Yellow_Pea.setObjectName(u"radioButton_Yellow_Pea")
+
+        self.verticalLayout_6.addWidget(self.radioButton_Yellow_Pea)
+
 
         self.horizontalLayout_2.addWidget(self.groupBox_options)
 
@@ -354,7 +375,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addLayout(self.verticalLayout)
 
-        self.horizontalLayout_2.setStretch(0, 1)
         self.horizontalLayout_2.setStretch(1, 3)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -390,6 +410,9 @@ class Ui_MainWindow(object):
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">No Error</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+        self.groupBox_machineSetting_2.setTitle(QCoreApplication.translate("MainWindow", u"Choose Crop", None))
+        self.radioButton_Soy.setText(QCoreApplication.translate("MainWindow", u"Soy", None))
+        self.radioButton_Yellow_Pea.setText(QCoreApplication.translate("MainWindow", u"Yellow Pea", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Select File", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.label_S_Value.setText(QCoreApplication.translate("MainWindow", u"S Value", None))

@@ -150,8 +150,8 @@ def Update_Table(self, file_name):
                 with open(file_name, "r") as fileInput:
                     csvFile = pandas.read_csv(fileInput)
                     #need "Timestamp","ID_REC","Property_2_Value" to "Protein","Property_2_H" to "H", "Pro" 
-                    csvFile = csvFile[['Timestamp','ID_REC',"Property_1_Value","Property_2_Value","Property_2_H","Property_2_S"]]
-                    csvFile.rename(columns={'Property_2_Value': 'Protein', 'Property_2_H': 'H', "Property_2_S":"S"}, inplace=True)
+                    csvFile = csvFile[['Timestamp','ID_REC',"Property_1_Value","Property_1_H","Property_1_S","Property_2_Value","Property_2_H","Property_2_S"]]
+                    csvFile.rename(columns={'Property_1_Value': 'Oil', 'Property_1_H': 'Oil_H', "Property_1_S":"Oil_S",'Property_2_Value': 'Protein', 'Property_2_H': 'H', "Property_2_S":"S"}, inplace=True)
                     csvFile_rev = csvFile[::-1].reset_index(drop=True)
                     formatted_panda = csvFile_rev
                     
@@ -162,8 +162,18 @@ def Update_Table(self, file_name):
 
             if self.radioButton_Winter.isChecked():
                 with open(file_name, "r") as fileInput:
-                    csvFile = pandas.read_csv(fileInput, sep=";", decimal=",",usecols=[0,1,7,9,10],skiprows=1, header=None)
-                    csvFile.columns = ['Timestamp','ID_REC','Protein','H','S']
+                    #csvFile = pandas.read_csv(fileInput, sep=";", decimal=",",usecols=[0,1,7,9,10,14,16,17],skiprows=1, header=None, on_bad_lines='warn')
+                    #csvFile = pandas.read_csv(fileInput, sep=";", decimal=",",skiprows=1, header=None, on_bad_lines='warn')
+                    df = pandas.read_fwf(fileInput, header=None)
+                    df = df.iloc[1:, :]
+                    
+                    
+                    df = df[0].str.split(';', expand=True)
+                    print(df)
+                    cols = [0,1,7,9,10,13,15,16]
+                    csvFile = df[df.columns[cols]]
+                    print(csvFile)
+                    csvFile.columns = ['Timestamp','ID_REC','Oil','Oil_H','Oil_S','Protein','H','S']
                     csvFile_rev = csvFile[::-1].reset_index(drop=True)
                     formatted_panda = csvFile_rev
             
@@ -192,17 +202,17 @@ def Update_Table(self, file_name):
 
                         color = ""
                         try:
-                            if isinstance(data, str) == True and col_name in ("Protein","H","S"):
+                            if isinstance(data, str) == True and col_name in ("Protein","H","S","Oil","Oil_H","Oil_S"):
                                 data = data.replace(",",".")
                                 data = round(float(data),decimal_places)
                                 cell_item = QTableWidgetItem(str(data))
                                 cell_item.setTextAlignment(Qt.AlignRight)
-                            elif col_name in ("Protein","H","S"):
+                            elif col_name in ("Protein","H","S","Oil","Oil_H","Oil_S"):
                                 data = round(float(data),decimal_places)
                                 cell_item = QTableWidgetItem(str(data))
                                 cell_item.setTextAlignment(Qt.AlignRight)
 
-                            if col_name == "H":
+                            if col_name == "H" or col_name == "Oil_H":
                                 if data > 10:
                                     color = "red"
                                 else:
@@ -212,7 +222,7 @@ def Update_Table(self, file_name):
                                     self.widget_2.updateValue(data)
                                     
                                 
-                            if col_name == "S":
+                            if col_name == "S" or col_name == "Oil_S":
                                 if data > 60:
                                     color = "red"
                                 else:
@@ -221,7 +231,7 @@ def Update_Table(self, file_name):
                                 if index == 0:
                                     self.widget_3.updateValue(data)
 
-                            if col_name == "Protein":
+                            if col_name == "Protein" or col_name == "Oil":
                                 if data < 5 or data > 80:
                                     color = "red"
                                 else:
