@@ -31,17 +31,17 @@ def Set_Guage_1_Protein(self):
         self.widget.updateAngleOffset(0)
         self.widget.setScaleStartAngle(135)
         self.widget.setTotalScaleAngleSize(270)
-        self.widget.setEnableBarGraph(True)
+        self.widget.setEnableBarGraph(False)
         self.widget.setEnableValueText(True)
         self.widget.setEnableCenterPoint(False)
         self.widget.setEnableNeedlePolygon(True)
 
         self.widget.setEnableScaleText(True)
-        self.widget.setEnableScalePolygon(True)
+        self.widget.setEnableScalePolygon(False)
         self.widget.setEnableBigScaleGrid(True)
         self.widget.setEnableFineScaleGrid(True)
-        self.widget.setGaugeColorOuterRadiusFactor(1000)
-        self.widget.setGaugeColorInnerRadiusFactor(600)
+        #self.widget.setGaugeColorOuterRadiusFactor(1000)
+        #self.widget.setGaugeColorInnerRadiusFactor(600)
         self.widget.setNeedleColor(R=0, G=0, B=0, Transparency=255)
         #self.widget.setNeedleColorOnDrag(R=R, G=G, B=B, Transparency=Transparency)
         #self.widget.setScaleValueColor(R=R, G=G, B=B, Transparency=Transparency)
@@ -51,12 +51,12 @@ def Set_Guage_1_Protein(self):
         red_scale_start = .15
         red_scale_end = .715
         yellow_spread = .001
-        self.widget.set_scale_polygon_colors([[red_scale_start, Qt.red],
-                                    [red_scale_start+yellow_spread, Qt.yellow],
-                                    [red_scale_start+(yellow_spread*2), Qt.green],
-                                    [red_scale_end-(yellow_spread*2), Qt.green],
-                                    [red_scale_end-yellow_spread, Qt.yellow],
-                                    [red_scale_end, Qt.red]])
+        # self.widget.set_scale_polygon_colors([[red_scale_start, Qt.red],
+        #                             [red_scale_start+yellow_spread, Qt.yellow],
+        #                             [red_scale_start+(yellow_spread*2), Qt.green],
+        #                             [red_scale_end-(yellow_spread*2), Qt.green],
+        #                             [red_scale_end-yellow_spread, Qt.yellow],
+        #                             [red_scale_end, Qt.red]])
         # self.widget.setCustomGaugeTheme(
         #     color1 = "red",
         #     color2= "purple",
@@ -75,8 +75,8 @@ def Set_Guage_1_Protein(self):
         #     color1 = "black"
         # )
 
-        self.widget.setBigScaleColor("#005275")
-        self.widget.setFineScaleColor("#005275")
+        #self.widget.setBigScaleColor("#005275")
+        #self.widget.setFineScaleColor("#005275")
         self.widget.setMouseTracking(False)
 
 def Set_Guage_2_H(self):
@@ -202,6 +202,7 @@ def Set_Guage_3_S(self):
 def Update_Table(self, file_name):
             
         try:
+            
             if self.radioButton_Almaco.isChecked():
                 with open(file_name, "r") as fileInput:
                     csvFile = pandas.read_csv(fileInput)
@@ -222,13 +223,14 @@ def Update_Table(self, file_name):
                     csvFile.columns = ['Timestamp','ID_REC','Protein','H','S']
                     csvFile_rev = csvFile[::-1].reset_index(drop=True)
                     formatted_panda = csvFile_rev
-
+            
             no_row = len(formatted_panda)
             no_columns = len(formatted_panda.columns)
             self.entry_table.setColumnCount(no_columns)
             self.entry_table.setRowCount(no_row)
             rowNumber=0
             rowBad_count = 0
+            decimal_places = 1
             try:
                 for col in formatted_panda.columns:
                             text = col
@@ -244,12 +246,18 @@ def Update_Table(self, file_name):
                         col_num = row.to_list().index(column)
                         col_name = formatted_panda.columns[col_num]
                         cell_item = QTableWidgetItem(str(column))
+
                         color = ""
                         try:
                             if isinstance(data, str) == True and col_name in ("Protein","H","S"):
                                 data = data.replace(",",".")
-                                data = float(data)
+                                data = round(float(data),decimal_places)
                                 cell_item = QTableWidgetItem(str(data))
+                                cell_item.setTextAlignment(Qt.AlignRight)
+                            elif col_name in ("Protein","H","S"):
+                                data = round(float(data),decimal_places)
+                                cell_item = QTableWidgetItem(str(data))
+                                cell_item.setTextAlignment(Qt.AlignRight)
 
                             if col_name == "H":
                                 if data > 60:
@@ -274,7 +282,7 @@ def Update_Table(self, file_name):
                                 if data < 5 or data > 80:
                                     color = "red"
                                 else:
-                                    color = "green"
+                                    color = ""
                             
                                 if index == 0:
                                     self.widget.updateValue(data)
@@ -335,6 +343,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.setWindowTitle("Combine UI")
+        self.setGeometry(0,0,1920,1080)
+        #self.setWindowIcon(QtGui.QIcon('BensonHillIngredients.png'))
         self.app = app
 
 

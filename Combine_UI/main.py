@@ -4,6 +4,10 @@ from mainwindow import MainWindow
 from PySide6.QtGui import QPalette, QColor
 from PySide6.QtCore import Qt
 from PySide6 import QtGui
+import ctypes
+
+myappid = 'BensonHill.Combine_UI.V0_01'
+ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 app = QApplication(sys.argv)
 
 
@@ -28,8 +32,10 @@ app.setPalette(darkPalette)
 #____________________________________________________________
 
 
-app.setWindowIcon(QtGui.QIcon('BensonHillIngredients.ico'))
+
 
 w = MainWindow(app)
 w.show()
 app.exec()
+
+sys.exit()
