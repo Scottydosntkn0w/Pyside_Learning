@@ -3,7 +3,6 @@ from PySide6.QtWidgets import QApplication
 from mainwindow import MainWindow
 from PySide6.QtGui import QPalette, QColor
 from PySide6.QtCore import Qt
-from PySide6 import QtGui
 import ctypes
 
 myappid = 'BensonHill.Combine_UI.V0_01'

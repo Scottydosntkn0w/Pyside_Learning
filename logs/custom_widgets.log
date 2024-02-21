@@ -1363,3 +1363,5 @@
 2024-02-06 09:08:10,193 - DEBUG - Loaded backend qtagg version 6.6.1.
 2024-02-06 09:10:16,286 - DEBUG - Loaded backend qtagg version 6.6.1.
 2024-02-06 14:57:25,718 - DEBUG - Loaded backend qtagg version 6.6.1.
+2024-02-21 11:12:41,821 - DEBUG - CACHEDIR=C:\Users\shendricks\.matplotlib
+2024-02-21 11:12:41,823 - DEBUG - Using fontManager instance from C:\Users\shendricks\.matplotlib\fontlist-v330.json

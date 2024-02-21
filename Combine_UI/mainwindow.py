@@ -1,21 +1,11 @@
 import pandas
 import os
-import numpy as np
-from datetime import datetime
 from PySide6 import QtGui
 from PySide6.QtCore import Qt,QTimer
-from PySide6.QtWidgets import  QMainWindow,QMessageBox,QFileDialog,QTableWidgetItem
-from matplotlib import cm
-from matplotlib import pyplot as plt
-from matplotlib.patches import Circle, Wedge, Rectangle
+from PySide6.QtWidgets import  QMainWindow,QFileDialog,QTableWidgetItem
 from ui_mainwindow import Ui_MainWindow
-import sys
-import random
-from matplotlib.backends.backend_qtagg import FigureCanvas
-from matplotlib.backends.backend_qtagg import \
-    NavigationToolbar2QT as NavigationToolbar
-from matplotlib.backends.qt_compat import QtWidgets
-from matplotlib.figure import Figure
+
+
 
 timer = QTimer()
 
