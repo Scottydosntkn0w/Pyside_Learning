@@ -151,9 +151,10 @@ def Update_Table(self, file_name):
                     csvFile = pandas.read_csv(fileInput)
                     #need "Timestamp","ID_REC","Property_2_Value" to "Protein","Property_2_H" to "H", "Pro" 
                     csvFile = csvFile[['Timestamp','ID_REC',"Property_1_Value","Property_1_H","Property_1_S","Property_2_Value","Property_2_H","Property_2_S"]]
-                    csvFile.rename(columns={'Property_1_Value': 'Oil', 'Property_1_H': 'Oil_H', "Property_1_S":"Oil_S",'Property_2_Value': 'Protein', 'Property_2_H': 'H', "Property_2_S":"S"}, inplace=True)
+                    csvFile.rename(columns={'Timestamp':'Time','Property_1_Value': 'Oil', 'Property_1_H': 'Oil_H', "Property_1_S":"Oil_S",'Property_2_Value': 'Protein', 'Property_2_H': 'H', "Property_2_S":"S"}, inplace=True)
                     csvFile_rev = csvFile[::-1].reset_index(drop=True)
                     formatted_panda = csvFile_rev
+                    
                     
             if self.radioButton_Other.isChecked():         
                 with open(file_name, "r") as fileInput:
@@ -166,17 +167,21 @@ def Update_Table(self, file_name):
                     #csvFile = pandas.read_csv(fileInput, sep=";", decimal=",",skiprows=1, header=None, on_bad_lines='warn')
                     df = pandas.read_fwf(fileInput, header=None)
                     df = df.iloc[1:, :]
-                    
-                    
                     df = df[0].str.split(';', expand=True)
                     print(df)
-                    cols = [0,1,7,9,10,13,15,16]
+                    if self.radioButton_Soy.isChecked(): 
+                        cols = [0,1,7,9,10,13,15,16]
+                        cols_names = ['Time','ID_REC','Oil','Oil_H','Oil_S','Protein','H','S']
+                    if self.radioButton_Yellow_Pea.isChecked():
+                        cols = [0,1,7,9,10]
+                        cols_names = ['Time','ID_REC','Protein','H','S']
                     csvFile = df[df.columns[cols]]
                     print(csvFile)
-                    csvFile.columns = ['Timestamp','ID_REC','Oil','Oil_H','Oil_S','Protein','H','S']
+                    csvFile.columns = cols_names
                     csvFile_rev = csvFile[::-1].reset_index(drop=True)
                     formatted_panda = csvFile_rev
-            
+                    
+
             no_row = len(formatted_panda)
             no_columns = len(formatted_panda.columns)
             self.entry_table.setColumnCount(no_columns)
@@ -211,6 +216,23 @@ def Update_Table(self, file_name):
                                 data = round(float(data),decimal_places)
                                 cell_item = QTableWidgetItem(str(data))
                                 cell_item.setTextAlignment(Qt.AlignRight)
+                            elif col_name == "Time":
+                                #2023-08-17 22:14:27
+                                #10/11/2022 14:01
+                                date_time = data.split(" ")
+                                time = date_time[1]
+                                time = time.split(":")
+                                hours = time[0]
+                                minutes = time[1]
+                                if int(hours) >= 12:
+                                    if int(hours) > 12:
+                                        hours = int(hours) - 12 
+                                    meridian = "pm"
+                                else:
+                                    meridian = "am"
+                                data = f"{hours}:{minutes} {meridian}"
+
+                                cell_item = QTableWidgetItem(str(data))
 
                             if col_name == "H" or col_name == "Oil_H":
                                 if data > 10:
@@ -232,10 +254,10 @@ def Update_Table(self, file_name):
                                     self.widget_3.updateValue(data)
 
                             if col_name == "Protein" or col_name == "Oil":
-                                if data < 5 or data > 80:
-                                    color = "red"
-                                else:
-                                    color = ""
+                                # if data < 5 or data > 80:
+                                #     color = "red"
+                                # else:
+                                #     color = ""
                             
                                 if index == 0:
                                     #self.widget.updateValue(data)
@@ -305,12 +327,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         Set_Guage_2_H(self)
         Set_Guage_3_S(self)
-        
-
-
+    
 
         #Signal slot connections
         self.pushButton.clicked.connect(self.select_file)
+        self.radioButton_Almaco.clicked.connect(self.toggle_to_soy)
+        self.radioButton_Winter.clicked.connect(self.enable_yp)
+        
 
     def checkForUpdate(self):
         print("checked")
@@ -338,7 +361,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             timer.timeout.connect(self.checkForUpdate)
             timer.start(1000)
 
-
+    def toggle_to_soy(self):
+        self.radioButton_Yellow_Pea.setDisabled(True)
+        self.radioButton_Yellow_Pea.text
+        self.radioButton_Soy.setChecked(True)
+        self.radioButton_Yellow_Pea.setStyleSheet('color: "gray"')
+    def enable_yp(self):
+        self.radioButton_Yellow_Pea.setEnabled(True)
+        self.radioButton_Yellow_Pea.setStyleSheet('color: "white"')
 
 
 

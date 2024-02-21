@@ -99,6 +99,7 @@ class Ui_MainWindow(object):
 
         self.radioButton_Yellow_Pea = QRadioButton(self.layoutWidget_2)
         self.radioButton_Yellow_Pea.setObjectName(u"radioButton_Yellow_Pea")
+        self.radioButton_Yellow_Pea.setEnabled(True)
 
         self.verticalLayout_6.addWidget(self.radioButton_Yellow_Pea)
 
@@ -151,6 +152,7 @@ class Ui_MainWindow(object):
         if (self.entry_table.rowCount() < 1):
             self.entry_table.setRowCount(1)
         self.entry_table.setObjectName(u"entry_table")
+        self.entry_table.setEnabled(True)
         sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(7)
@@ -401,6 +403,9 @@ class Ui_MainWindow(object):
         self.radioButton_Winter.setText(QCoreApplication.translate("MainWindow", u"Winter", None))
         self.radioButton_Other.setText(QCoreApplication.translate("MainWindow", u"Other", None))
         self.groupBox_Error.setTitle(QCoreApplication.translate("MainWindow", u"Error Message", None))
+        self.textBrowser_Error.setMarkdown(QCoreApplication.translate("MainWindow", u"Select File\n"
+"\n"
+"", None))
         self.textBrowser_Error.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -408,8 +413,7 @@ class Ui_MainWindow(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">No Error</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+"<p style=\" margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Select File</p></body></html>", None))
         self.groupBox_machineSetting_2.setTitle(QCoreApplication.translate("MainWindow", u"Choose Crop", None))
         self.radioButton_Soy.setText(QCoreApplication.translate("MainWindow", u"Soy", None))
         self.radioButton_Yellow_Pea.setText(QCoreApplication.translate("MainWindow", u"Yellow Pea", None))
