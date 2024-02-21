@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="Benson_Hill_Icons">
+    <file>BensonHillIngredients.ico</file>
+    <file>BensonHillIngredients.png</file>
+  </qresource>
+</RCC>

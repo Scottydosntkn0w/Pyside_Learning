@@ -414,6 +414,10 @@
   ('IPython.utils.wildcard',
    'C:\\Users\\shendricks\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\IPython\\utils\\wildcard.py',
    'PYMODULE'),
+  ('Main_Icons_rc',
+   'C:\\Users\\shendricks\\OneDrive - Benson '
+   'Hill\\Documents\\Pyside_Learning\\Combine_UI\\Main_Icons_rc.py',
+   'PYMODULE'),
   ('PIL',
    'C:\\Users\\shendricks\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PIL\\__init__.py',
    'PYMODULE'),

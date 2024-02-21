@@ -19,73 +19,14 @@ from matplotlib.figure import Figure
 
 timer = QTimer()
 
-def Set_Guage_1_Protein(self):
-        # Setup Guage
-        self.widget.units = "%"
-        self.widget.minValue = 0
-        self.widget.maxValue = 100
-        #Divisions
-        self.widget.scalaCount = 10
-
-        self.widget.updateValue(self.widget.minValue)
-        self.widget.updateAngleOffset(0)
-        self.widget.setScaleStartAngle(135)
-        self.widget.setTotalScaleAngleSize(270)
-        self.widget.setEnableBarGraph(True)
-        self.widget.setEnableValueText(True)
-        self.widget.setEnableCenterPoint(False)
-        self.widget.setEnableNeedlePolygon(True)
-
-        self.widget.setEnableScaleText(True)
-        self.widget.setEnableScalePolygon(True)
-        self.widget.setEnableBigScaleGrid(True)
-        self.widget.setEnableFineScaleGrid(True)
-        self.widget.setGaugeColorOuterRadiusFactor(1000)
-        self.widget.setGaugeColorInnerRadiusFactor(600)
-        self.widget.setNeedleColor(R=0, G=0, B=0, Transparency=255)
-        #self.widget.setNeedleColorOnDrag(R=R, G=G, B=B, Transparency=Transparency)
-        #self.widget.setScaleValueColor(R=R, G=G, B=B, Transparency=Transparency)
-        #self.widget.setDisplayValueColor(R=R, G=G, B=B, Transparency=Transparency)
-        self.widget.setGaugeTheme(0)
-        #self.widget.setOuterCircleColor()
-        red_scale_start = .15
-        red_scale_end = .715
-        yellow_spread = .001
-        self.widget.set_scale_polygon_colors([[red_scale_start, Qt.red],
-                                    [red_scale_start+yellow_spread, Qt.yellow],
-                                    [red_scale_start+(yellow_spread*2), Qt.green],
-                                    [red_scale_end-(yellow_spread*2), Qt.green],
-                                    [red_scale_end-yellow_spread, Qt.yellow],
-                                    [red_scale_end, Qt.red]])
-        # self.widget.setCustomGaugeTheme(
-        #     color1 = "red",
-        #     color2= "purple",
-        #     color3 = "blue"
-        # )
-
-        # self.widget.setScalePolygonColor(
-        #     color1 = "green"
-        # )
-
-        # self.widget.setNeedleCenterColor(
-        #     color1 = "white"
-        # )
-
-        # self.widget.setOuterCircleColor(
-        #     color1 = "black"
-        # )
-
-        self.widget.setBigScaleColor("#005275")
-        self.widget.setFineScaleColor("#005275")
-        self.widget.setMouseTracking(False)
 
 def Set_Guage_2_H(self):
         # Setup Guage
         self.widget_2.units = "H"
         self.widget_2.minValue = 0
-        self.widget_2.maxValue = 100
+        self.widget_2.maxValue = 20
         #Divisions
-        self.widget_2.scalaCount = 10
+        self.widget_2.scalaCount = 4
 
         self.widget_2.updateValue(self.widget_2.minValue)
         self.widget_2.updateAngleOffset(0)
@@ -108,7 +49,7 @@ def Set_Guage_2_H(self):
         #self.widget_2.setDisplayValueColor(R=R, G=G, B=B, Transparency=Transparency)
         self.widget_2.setGaugeTheme(0)
         #self.widget_2.setOuterCircleColor()
-        red_scale_start = .29
+        red_scale_start = .369
         red_scale_end = 1
         yellow_spread = .01
         self.widget_2.set_scale_polygon_colors([[red_scale_start, Qt.red],
@@ -117,6 +58,8 @@ def Set_Guage_2_H(self):
                                     [red_scale_end-(yellow_spread*2), Qt.green],
                                     [red_scale_end-yellow_spread, Qt.yellow],
                                     [red_scale_end, Qt.red]])
+
+
         # self.widget_2.setCustomGaugeTheme(
         #     color1 = "red",
         #     color2= "purple",
@@ -143,9 +86,9 @@ def Set_Guage_3_S(self):
         # Setup Guage
         self.widget_3.units = "S"
         self.widget_3.minValue = 0
-        self.widget_3.maxValue = 20
+        self.widget_3.maxValue = 100
         #Divisions
-        self.widget_3.scalaCount = 4
+        self.widget_3.scalaCount = 10
 
         self.widget_3.updateValue(self.widget_3.minValue)
         self.widget_3.updateAngleOffset(0)
@@ -168,7 +111,7 @@ def Set_Guage_3_S(self):
         #self.widget_3.setDisplayValueColor(R=R, G=G, B=B, Transparency=Transparency)
         self.widget_3.setGaugeTheme(0)
         #self.widget_3.setOuterCircleColor()
-        red_scale_start = .369
+        red_scale_start = .29
         red_scale_end = 1
         yellow_spread = .01
         self.widget_3.set_scale_polygon_colors([[red_scale_start, Qt.red],
@@ -202,14 +145,16 @@ def Set_Guage_3_S(self):
 def Update_Table(self, file_name):
             
         try:
+            
             if self.radioButton_Almaco.isChecked():
                 with open(file_name, "r") as fileInput:
                     csvFile = pandas.read_csv(fileInput)
                     #need "Timestamp","ID_REC","Property_2_Value" to "Protein","Property_2_H" to "H", "Pro" 
-                    csvFile = csvFile[['Timestamp','ID_REC',"Property_2_Value","Property_2_H","Property_2_S"]]
-                    csvFile.rename(columns={'Property_2_Value': 'Protein', 'Property_2_H': 'H', "Property_2_S":"S"}, inplace=True)
+                    csvFile = csvFile[['Timestamp','ID_REC',"Property_1_Value","Property_1_H","Property_1_S","Property_2_Value","Property_2_H","Property_2_S"]]
+                    csvFile.rename(columns={'Timestamp':'Time','Property_1_Value': 'Oil', 'Property_1_H': 'Oil_H', "Property_1_S":"Oil_S",'Property_2_Value': 'Protein', 'Property_2_H': 'H', "Property_2_S":"S"}, inplace=True)
                     csvFile_rev = csvFile[::-1].reset_index(drop=True)
                     formatted_panda = csvFile_rev
+                    
                     
             if self.radioButton_Other.isChecked():         
                 with open(file_name, "r") as fileInput:
@@ -218,10 +163,24 @@ def Update_Table(self, file_name):
 
             if self.radioButton_Winter.isChecked():
                 with open(file_name, "r") as fileInput:
-                    csvFile = pandas.read_csv(fileInput, sep=";", decimal=",",usecols=[0,1,7,9,10],skiprows=1, header=None)
-                    csvFile.columns = ['Timestamp','ID_REC','Protein','H','S']
+                    #csvFile = pandas.read_csv(fileInput, sep=";", decimal=",",usecols=[0,1,7,9,10,14,16,17],skiprows=1, header=None, on_bad_lines='warn')
+                    #csvFile = pandas.read_csv(fileInput, sep=";", decimal=",",skiprows=1, header=None, on_bad_lines='warn')
+                    df = pandas.read_fwf(fileInput, header=None)
+                    df = df.iloc[1:, :]
+                    df = df[0].str.split(';', expand=True)
+                    print(df)
+                    if self.radioButton_Soy.isChecked(): 
+                        cols = [0,1,7,9,10,13,15,16]
+                        cols_names = ['Time','ID_REC','Oil','Oil_H','Oil_S','Protein','H','S']
+                    if self.radioButton_Yellow_Pea.isChecked():
+                        cols = [0,1,7,9,10]
+                        cols_names = ['Time','ID_REC','Protein','H','S']
+                    csvFile = df[df.columns[cols]]
+                    print(csvFile)
+                    csvFile.columns = cols_names
                     csvFile_rev = csvFile[::-1].reset_index(drop=True)
                     formatted_panda = csvFile_rev
+                    
 
             no_row = len(formatted_panda)
             no_columns = len(formatted_panda.columns)
@@ -229,6 +188,7 @@ def Update_Table(self, file_name):
             self.entry_table.setRowCount(no_row)
             rowNumber=0
             rowBad_count = 0
+            decimal_places = 1
             try:
                 for col in formatted_panda.columns:
                             text = col
@@ -244,15 +204,38 @@ def Update_Table(self, file_name):
                         col_num = row.to_list().index(column)
                         col_name = formatted_panda.columns[col_num]
                         cell_item = QTableWidgetItem(str(column))
+
                         color = ""
                         try:
-                            if isinstance(data, str) == True and col_name in ("Protein","H","S"):
+                            if isinstance(data, str) == True and col_name in ("Protein","H","S","Oil","Oil_H","Oil_S"):
                                 data = data.replace(",",".")
-                                data = float(data)
+                                data = round(float(data),decimal_places)
+                                cell_item = QTableWidgetItem(str(data))
+                                cell_item.setTextAlignment(Qt.AlignRight)
+                            elif col_name in ("Protein","H","S","Oil","Oil_H","Oil_S"):
+                                data = round(float(data),decimal_places)
+                                cell_item = QTableWidgetItem(str(data))
+                                cell_item.setTextAlignment(Qt.AlignRight)
+                            elif col_name == "Time":
+                                #2023-08-17 22:14:27
+                                #10/11/2022 14:01
+                                date_time = data.split(" ")
+                                time = date_time[1]
+                                time = time.split(":")
+                                hours = time[0]
+                                minutes = time[1]
+                                if int(hours) >= 12:
+                                    if int(hours) > 12:
+                                        hours = int(hours) - 12 
+                                    meridian = "pm"
+                                else:
+                                    meridian = "am"
+                                data = f"{hours}:{minutes} {meridian}"
+
                                 cell_item = QTableWidgetItem(str(data))
 
-                            if col_name == "H":
-                                if data > 60:
+                            if col_name == "H" or col_name == "Oil_H":
+                                if data > 10:
                                     color = "red"
                                 else:
                                     color = "green"
@@ -261,8 +244,8 @@ def Update_Table(self, file_name):
                                     self.widget_2.updateValue(data)
                                     
                                 
-                            if col_name == "S":
-                                if data > 10:
+                            if col_name == "S" or col_name == "Oil_S":
+                                if data > 60:
                                     color = "red"
                                 else:
                                     color = "green"                           
@@ -270,14 +253,15 @@ def Update_Table(self, file_name):
                                 if index == 0:
                                     self.widget_3.updateValue(data)
 
-                            if col_name == "Protein":
-                                if data < 5 or data > 80:
-                                    color = "red"
-                                else:
-                                    color = "green"
+                            if col_name == "Protein" or col_name == "Oil":
+                                # if data < 5 or data > 80:
+                                #     color = "red"
+                                # else:
+                                #     color = ""
                             
                                 if index == 0:
-                                    self.widget.updateValue(data)
+                                    #self.widget.updateValue(data)
+                                    pass
 
                             if color == "red":
                                  rowBad = True
@@ -310,7 +294,7 @@ def Update_Table(self, file_name):
                 self.textBrowser_Error.setStyleSheet(u"background-color: rgb(255, 0, 0);")
             self.entry_table.resizeColumnsToContents()
             first_row = formatted_panda.iloc[0]
-            self.last_protei_value_label.setText(str(first_row['Protein']))
+            
             self.label_H_Value_Num.setText(str(first_row['H']))
             self.label_S_Value_Num.setText(str(first_row['S']))
             self.label_Bad_Num.setText(str(rowBad_count))
@@ -335,18 +319,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.setWindowTitle("Combine UI")
+        self.setGeometry(0,0,1920,1080)
+        #self.setWindowIcon(QtGui.QIcon('BensonHillIngredients.png'))
         self.app = app
 
 
-        Set_Guage_1_Protein(self)
+
         Set_Guage_2_H(self)
         Set_Guage_3_S(self)
-        self.widget.updateValue(22)
-
-
+    
 
         #Signal slot connections
         self.pushButton.clicked.connect(self.select_file)
+        self.radioButton_Almaco.clicked.connect(self.toggle_to_soy)
+        self.radioButton_Winter.clicked.connect(self.enable_yp)
+        
 
     def checkForUpdate(self):
         print("checked")
@@ -374,7 +361,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             timer.timeout.connect(self.checkForUpdate)
             timer.start(1000)
 
-
+    def toggle_to_soy(self):
+        self.radioButton_Yellow_Pea.setDisabled(True)
+        self.radioButton_Yellow_Pea.text
+        self.radioButton_Soy.setChecked(True)
+        self.radioButton_Yellow_Pea.setStyleSheet('color: "gray"')
+    def enable_yp(self):
+        self.radioButton_Yellow_Pea.setEnabled(True)
+        self.radioButton_Yellow_Pea.setStyleSheet('color: "white"')
 
 
 
