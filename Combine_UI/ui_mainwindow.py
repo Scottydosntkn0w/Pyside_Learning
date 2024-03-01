@@ -193,6 +193,18 @@ class Ui_MainWindow(object):
         self.ThirGraph_QFrame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_5 = QVBoxLayout(self.ThirGraph_QFrame)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.widget_3 = AnalogGaugeWidget(self.ThirGraph_QFrame)
+        self.widget_3.setObjectName(u"widget_3")
+        self.widget_3.setMinimumSize(QSize(300, 300))
+        self.widget_3.setMouseTracking(False)
+
+        self.verticalLayout_5.addWidget(self.widget_3)
+
+        self.pushButton_Reset_Speed = QPushButton(self.ThirGraph_QFrame)
+        self.pushButton_Reset_Speed.setObjectName(u"pushButton_Reset_Speed")
+
+        self.verticalLayout_5.addWidget(self.pushButton_Reset_Speed)
+
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.label_S_Value = QLabel(self.ThirGraph_QFrame)
@@ -208,12 +220,20 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addLayout(self.horizontalLayout_5)
 
-        self.widget_3 = AnalogGaugeWidget(self.ThirGraph_QFrame)
-        self.widget_3.setObjectName(u"widget_3")
-        self.widget_3.setMinimumSize(QSize(300, 300))
-        self.widget_3.setMouseTracking(False)
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.label_Speed_Plots = QLabel(self.ThirGraph_QFrame)
+        self.label_Speed_Plots.setObjectName(u"label_Speed_Plots")
 
-        self.verticalLayout_5.addWidget(self.widget_3)
+        self.horizontalLayout_3.addWidget(self.label_Speed_Plots)
+
+        self.label_Speed_Plots_Number = QLabel(self.ThirGraph_QFrame)
+        self.label_Speed_Plots_Number.setObjectName(u"label_Speed_Plots_Number")
+
+        self.horizontalLayout_3.addWidget(self.label_Speed_Plots_Number)
+
+
+        self.verticalLayout_5.addLayout(self.horizontalLayout_3)
 
 
         self.verticalLayout_3.addWidget(self.ThirGraph_QFrame)
@@ -224,26 +244,79 @@ class Ui_MainWindow(object):
         self.SecondGraph_QFrame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_4 = QVBoxLayout(self.SecondGraph_QFrame)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.groupBox_Daily_Stats = QGroupBox(self.SecondGraph_QFrame)
+        self.groupBox_Daily_Stats.setObjectName(u"groupBox_Daily_Stats")
+        self.verticalLayoutWidget = QWidget(self.groupBox_Daily_Stats)
+        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
+        self.verticalLayoutWidget.setGeometry(QRect(9, 29, 281, 201))
+        self.verticalLayout_7 = QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout_7.setSpacing(5)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.verticalLayout_7.setContentsMargins(5, 5, 5, 5)
         self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setSpacing(5)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.label_H_Value = QLabel(self.SecondGraph_QFrame)
-        self.label_H_Value.setObjectName(u"label_H_Value")
+        self.horizontalLayout_4.setContentsMargins(5, 5, 5, 5)
+        self.label_2 = QLabel(self.verticalLayoutWidget)
+        self.label_2.setObjectName(u"label_2")
 
-        self.horizontalLayout_4.addWidget(self.label_H_Value)
+        self.horizontalLayout_4.addWidget(self.label_2)
 
-        self.label_H_Value_Num = QLabel(self.SecondGraph_QFrame)
-        self.label_H_Value_Num.setObjectName(u"label_H_Value_Num")
+        self.label_Current_Day_No = QLabel(self.verticalLayoutWidget)
+        self.label_Current_Day_No.setObjectName(u"label_Current_Day_No")
 
-        self.horizontalLayout_4.addWidget(self.label_H_Value_Num)
+        self.horizontalLayout_4.addWidget(self.label_Current_Day_No)
 
 
-        self.verticalLayout_4.addLayout(self.horizontalLayout_4)
+        self.verticalLayout_7.addLayout(self.horizontalLayout_4)
 
-        self.widget_2 = AnalogGaugeWidget(self.SecondGraph_QFrame)
-        self.widget_2.setObjectName(u"widget_2")
-        self.widget_2.setMinimumSize(QSize(300, 300))
+        self.horizontalLayout_12 = QHBoxLayout()
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.label_4 = QLabel(self.verticalLayoutWidget)
+        self.label_4.setObjectName(u"label_4")
 
-        self.verticalLayout_4.addWidget(self.widget_2)
+        self.horizontalLayout_12.addWidget(self.label_4)
+
+        self.label_Plot_Day_No = QLabel(self.verticalLayoutWidget)
+        self.label_Plot_Day_No.setObjectName(u"label_Plot_Day_No")
+
+        self.horizontalLayout_12.addWidget(self.label_Plot_Day_No)
+
+
+        self.verticalLayout_7.addLayout(self.horizontalLayout_12)
+
+        self.horizontalLayout_13 = QHBoxLayout()
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.label_6 = QLabel(self.verticalLayoutWidget)
+        self.label_6.setObjectName(u"label_6")
+
+        self.horizontalLayout_13.addWidget(self.label_6)
+
+        self.label_Total_Time_Day_No = QLabel(self.verticalLayoutWidget)
+        self.label_Total_Time_Day_No.setObjectName(u"label_Total_Time_Day_No")
+
+        self.horizontalLayout_13.addWidget(self.label_Total_Time_Day_No)
+
+
+        self.verticalLayout_7.addLayout(self.horizontalLayout_13)
+
+        self.horizontalLayout_14 = QHBoxLayout()
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.label_7 = QLabel(self.verticalLayoutWidget)
+        self.label_7.setObjectName(u"label_7")
+
+        self.horizontalLayout_14.addWidget(self.label_7)
+
+        self.label_PlotHr_Day_No = QLabel(self.verticalLayoutWidget)
+        self.label_PlotHr_Day_No.setObjectName(u"label_PlotHr_Day_No")
+
+        self.horizontalLayout_14.addWidget(self.label_PlotHr_Day_No)
+
+
+        self.verticalLayout_7.addLayout(self.horizontalLayout_14)
+
+
+        self.verticalLayout_4.addWidget(self.groupBox_Daily_Stats)
 
 
         self.verticalLayout_3.addWidget(self.SecondGraph_QFrame)
@@ -419,13 +492,23 @@ class Ui_MainWindow(object):
         self.radioButton_Yellow_Pea.setText(QCoreApplication.translate("MainWindow", u"Yellow Pea", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Select File", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_S_Value.setText(QCoreApplication.translate("MainWindow", u"S Value", None))
-        self.label_S_Value_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_H_Value.setText(QCoreApplication.translate("MainWindow", u"H Value", None))
-        self.label_H_Value_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.pushButton_Reset_Speed.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
+        self.label_S_Value.setText(QCoreApplication.translate("MainWindow", u"Start Time:", None))
+        self.label_S_Value_Num.setText(QCoreApplication.translate("MainWindow", u"NA", None))
+        self.label_Speed_Plots.setText(QCoreApplication.translate("MainWindow", u"Plots:", None))
+        self.label_Speed_Plots_Number.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.groupBox_Daily_Stats.setTitle(QCoreApplication.translate("MainWindow", u"Daily Statistics", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Current Day:", None))
+        self.label_Current_Day_No.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Plots:", None))
+        self.label_Plot_Day_No.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Total Time (hr):", None))
+        self.label_Total_Time_Day_No.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Plots/Hr:", None))
+        self.label_PlotHr_Day_No.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.file_name_label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.File_timestamp_Label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.groupBoxStats.setTitle(QCoreApplication.translate("MainWindow", u"Statistics", None))
+        self.groupBoxStats.setTitle(QCoreApplication.translate("MainWindow", u"File Statistics", None))
         self.label_Bad.setText(QCoreApplication.translate("MainWindow", u"Bad:", None))
         self.label_Bad_Num.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.label_Total.setText(QCoreApplication.translate("MainWindow", u"Total:", None))

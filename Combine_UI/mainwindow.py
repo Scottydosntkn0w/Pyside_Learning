@@ -4,77 +4,92 @@ from PySide6 import QtGui
 from PySide6.QtCore import Qt,QTimer
 from PySide6.QtWidgets import  QMainWindow,QFileDialog,QTableWidgetItem
 from ui_mainwindow import Ui_MainWindow
-
+from datetime import datetime
 
 
 timer = QTimer()
 
+def harvest_speed(self,current_day,current_time,No_plots_day,days_first_datetime,reset_day,reset_time,No_Plots_after_reset):
 
-def Set_Guage_2_H(self):
+    current_hours = current_time[0]
+    current_mins = current_time[1]
+    
+    days_first_plot_day = days_first_datetime[0]
+    days_first_plot_time = days_first_datetime[1]
+    days_first_plot_time = days_first_plot_time.split(":")
+    days_first_plot_hours = days_first_plot_time[0]
+    days_first_plot_mins = days_first_plot_time[1]
+    if isinstance(reset_time, str):
+        if reset_time != "N/A":
+            reset_time = reset_time.split(":")
+        else:
+            reset_time = [days_first_plot_hours,days_first_plot_mins]
+    reset_time_hours = reset_time[0]
+    reset_time_mins = reset_time[1]
+
+
+    current_time_mins = (int(current_hours) * 60) + int(current_mins)
+    days_first_plot_time_mins = (int(days_first_plot_hours) * 60) + int(days_first_plot_mins)
+    reset_time_total_mins = (int(reset_time_hours) * 60) + int(reset_time_mins)
+
+    Time_after_reset_mins = current_time_mins - reset_time_total_mins
+
+    plots_per_hour_after_reset = No_Plots_after_reset / (Time_after_reset_mins/60)
+
+    self.label_Current_Day_No.setText(current_day)
+
+    Total_Time_mins = current_time_mins - days_first_plot_time_mins
+    Total_Time_hrs = Total_Time_mins / 60
+    self.label_Total_Time_Day_No.setText(str(Total_Time_hrs))
+    self.label_Plot_Day_No.setText(str(No_plots_day))
+    Plots_per_hour = No_plots_day / Total_Time_hrs
+    self.label_PlotHr_Day_No.setText(str(Plots_per_hour))
+
+    self.label_S_Value_Num.setText(f"{reset_day} {reset_time_hours}:{reset_time_mins}")
+    self.label_Speed_Plots_Number.setText(str(No_Plots_after_reset))
+
+    self.widget_3.updateValue(int(plots_per_hour_after_reset))
+
+
+
+    """ 
+    plots/day Calculation Requirments: 
+    Limit readings to the day 
+    need total plots for the day
+    running time for the day
+    duration of first plot for the day needs to be assumed and added
+
+    plots/hr calculation:
+    need user input to set "start time" then will look at all plots after that time
+    start time will default first plot in the day time.
+    total plots after start time
+    duration: time_of_last plot - start_time
+
+    UI Elements:
+    Daily Statistics:
+        Current Day
+        Plots
+        Total Hrs
+        Plots/Hr
+    
+    Speed Guage:
+        Guage (plot/hr): highly dependent on machine and operator
+            RED: TBD
+            Yellow: TBD
+            Green: TBD
+        Reset Button
+        Start Time
+        # of Plots 
+
+    """
+    
+
+
+    pass
+
+def Set_Guage_3_Speed(self):
         # Setup Guage
-        self.widget_2.units = "H"
-        self.widget_2.minValue = 0
-        self.widget_2.maxValue = 20
-        #Divisions
-        self.widget_2.scalaCount = 4
-
-        self.widget_2.updateValue(self.widget_2.minValue)
-        self.widget_2.updateAngleOffset(0)
-        self.widget_2.setScaleStartAngle(135)
-        self.widget_2.setTotalScaleAngleSize(270)
-        self.widget_2.setEnableBarGraph(True)
-        self.widget_2.setEnableValueText(True)
-        self.widget_2.setEnableCenterPoint(False)
-        self.widget_2.setEnableNeedlePolygon(True)
-
-        self.widget_2.setEnableScaleText(True)
-        self.widget_2.setEnableScalePolygon(True)
-        self.widget_2.setEnableBigScaleGrid(True)
-        self.widget_2.setEnableFineScaleGrid(True)
-        self.widget_2.setGaugeColorOuterRadiusFactor(1000)
-        self.widget_2.setGaugeColorInnerRadiusFactor(600)
-        self.widget_2.setNeedleColor(R=0, G=0, B=0, Transparency=255)
-        #self.widget_2.setNeedleColorOnDrag(R=R, G=G, B=B, Transparency=Transparency)
-        #self.widget_2.setScaleValueColor(R=R, G=G, B=B, Transparency=Transparency)
-        #self.widget_2.setDisplayValueColor(R=R, G=G, B=B, Transparency=Transparency)
-        self.widget_2.setGaugeTheme(0)
-        #self.widget_2.setOuterCircleColor()
-        red_scale_start = .369
-        red_scale_end = 1
-        yellow_spread = .01
-        self.widget_2.set_scale_polygon_colors([[red_scale_start, Qt.red],
-                                    [red_scale_start+yellow_spread, Qt.yellow],
-                                    [red_scale_start+(yellow_spread*2), Qt.green],
-                                    [red_scale_end-(yellow_spread*2), Qt.green],
-                                    [red_scale_end-yellow_spread, Qt.yellow],
-                                    [red_scale_end, Qt.red]])
-
-
-        # self.widget_2.setCustomGaugeTheme(
-        #     color1 = "red",
-        #     color2= "purple",
-        #     color3 = "blue"
-        # )
-
-        # self.widget_2.setScalePolygonColor(
-        #     color1 = "green"
-        # )
-
-        # self.widget_2.setNeedleCenterColor(
-        #     color1 = "white"
-        # )
-
-        # self.widget_2.setOuterCircleColor(
-        #     color1 = "black"
-        # )
-
-        self.widget_2.setBigScaleColor("#005275")
-        self.widget_2.setFineScaleColor("#005275")
-        self.widget_2.setMouseTracking(False)
-
-def Set_Guage_3_S(self):
-        # Setup Guage
-        self.widget_3.units = "S"
+        self.widget_3.units = "Plots/Hr"
         self.widget_3.minValue = 0
         self.widget_3.maxValue = 100
         #Divisions
@@ -133,7 +148,16 @@ def Set_Guage_3_S(self):
         self.widget_3.setMouseTracking(False)
 
 def Update_Table(self, file_name):
-            
+        No_Plots_after_reset = 0
+        if self.label_S_Value_Num.text() != "NA":
+            reset_day_time = self.label_S_Value_Num.text()
+            reset_day_time = reset_day_time.split(" ")
+            reset_day = reset_day_time[0]
+            reset_time = reset_day_time[1]
+            reset_time_split = reset_time.split(":")
+            reset_hours = reset_time_split[0]
+            reset_mins =  reset_time_split[1]
+
         try:
             
             if self.radioButton_Almaco.isChecked():
@@ -198,29 +222,42 @@ def Update_Table(self, file_name):
                         color = ""
                         try:
                             if isinstance(data, str) == True and col_name in ("Protein","H","S","Oil","Oil_H","Oil_S"):
-                                data = data.replace(",",".")
-                                data = round(float(data),decimal_places)
+                                try:
+                                    data = data.replace(",",".")
+                                    data = round(float(data),decimal_places)
+                                except Exception as e: 
+                                    data = "error"
+                                    color = 'pink'
+                                    print(f"error in cell parsing column: {col_name},index: {index},data: {data}, Exception: {e}")
+
                                 cell_item = QTableWidgetItem(str(data))
                                 cell_item.setTextAlignment(Qt.AlignRight)
+                                
+
                             elif col_name in ("Protein","H","S","Oil","Oil_H","Oil_S"):
-                                data = round(float(data),decimal_places)
+                                if isinstance(data, float):
+                                    data = round(float(data),decimal_places)
                                 cell_item = QTableWidgetItem(str(data))
                                 cell_item.setTextAlignment(Qt.AlignRight)
                             elif col_name == "Time":
                                 #2023-08-17 22:14:27
                                 #10/11/2022 14:01
                                 date_time = data.split(" ")
+                                date = date_time[0]
                                 time = date_time[1]
                                 time = time.split(":")
                                 hours = time[0]
                                 minutes = time[1]
                                 if int(hours) >= 12:
                                     if int(hours) > 12:
-                                        hours = int(hours) - 12 
+                                        hours_12 = int(hours) - 12 
+                                    else:
+                                        hours_12 = hours
                                     meridian = "pm"
                                 else:
                                     meridian = "am"
-                                data = f"{hours}:{minutes} {meridian}"
+                                    hours_12 = hours
+                                data = f"{hours_12}:{minutes} {meridian}"
 
                                 cell_item = QTableWidgetItem(str(data))
 
@@ -231,8 +268,8 @@ def Update_Table(self, file_name):
                                     color = "green"
                                 
                                 if index == 0:
-                                    self.widget_2.updateValue(data)
-                                    
+                                    #self.widget_2.updateValue(data)
+                                    pass
                                 
                             if col_name == "S" or col_name == "Oil_S":
                                 if data > 60:
@@ -241,7 +278,8 @@ def Update_Table(self, file_name):
                                     color = "green"                           
                             
                                 if index == 0:
-                                    self.widget_3.updateValue(data)
+                                    #self.widget_3.updateValue(data)
+                                    pass
 
                             if col_name == "Protein" or col_name == "Oil":
                                 # if data < 5 or data > 80:
@@ -252,6 +290,36 @@ def Update_Table(self, file_name):
                                 if index == 0:
                                     #self.widget.updateValue(data)
                                     pass
+                            
+                            if col_name == "Time":
+                                try:
+                                    if index == 0:
+                                        current_day = date
+                                        current_time = time
+                                        No_plots_day = 1
+                                        if self.label_S_Value_Num.text() == "NA":
+                                            reset_day = date
+                                            reset_time = "N/A"
+                                            reset_hours = 0
+                                            reset_mins = 0
+                                        
+                                    if index != 0 and date == current_day:
+                                        No_plots_day = No_plots_day + 1
+                                        date_time_day_first = date_time
+                                    
+                                    if date == reset_day:
+                                        if int(hours) > int(reset_hours):
+                                            No_Plots_after_reset = No_Plots_after_reset + 1
+                                        if int(hours) == int(reset_hours) and int(minutes) >= int(reset_mins):
+                                            No_Plots_after_reset = No_Plots_after_reset + 1
+                                except:
+                                    pass
+                                    
+                                    
+                                    
+
+
+                                
 
                             if color == "red":
                                  rowBad = True
@@ -284,9 +352,9 @@ def Update_Table(self, file_name):
                 self.textBrowser_Error.setStyleSheet(u"background-color: rgb(255, 0, 0);")
             self.entry_table.resizeColumnsToContents()
             first_row = formatted_panda.iloc[0]
-            
-            self.label_H_Value_Num.setText(str(first_row['H']))
-            self.label_S_Value_Num.setText(str(first_row['S']))
+
+            harvest_speed(self,current_day,current_time,No_plots_day,date_time_day_first,reset_day,reset_time,No_Plots_after_reset)
+
             self.label_Bad_Num.setText(str(rowBad_count))
             self.label_Total_Num.setText(str(rowNumber))
             percent_good = int(((rowNumber - rowBad_count) / rowNumber) * 100)
@@ -315,15 +383,31 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
 
-        Set_Guage_2_H(self)
-        Set_Guage_3_S(self)
+        
+        Set_Guage_3_Speed(self)
     
 
         #Signal slot connections
-        self.pushButton.clicked.connect(self.select_file)
+        self.pushButton_Reset_Speed.clicked.connect(self.reset_plot_per_hour)
         self.radioButton_Almaco.clicked.connect(self.toggle_to_soy)
         self.radioButton_Winter.clicked.connect(self.enable_yp)
+        self.pushButton.clicked.connect(self.select_file)
+    
+    def reset_plot_per_hour(self):
+        now = datetime.now()
+        #2023-08-17 22:14:27 winter
+        #10/11/2022 14:01 almaco
+        if self.radioButton_Almaco.isChecked():
+            current_date_time = now.strftime("%m/%d/%Y %H:%M")
+        if self.radioButton_Other.isChecked():
+            current_date_time = now.strftime("%m/%d/%Y %H:%M")
+        if self.radioButton_Winter.isChecked():
+            current_date_time = now.strftime("%Y-%m-%d %H:%M")
+        self.label_S_Value_Num.setText(current_date_time)
+        self.label_Speed_Plots_Number.setText("0")
+        self.widget_3.updateValue(0)
         
+
 
     def checkForUpdate(self):
         print("checked")
