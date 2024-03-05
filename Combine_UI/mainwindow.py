@@ -91,7 +91,7 @@ def Set_Guage_3_Speed(self):
         # Setup Guage
         self.widget_3.units = "Plots/Hr"
         self.widget_3.minValue = 0
-        self.widget_3.maxValue = 100
+        self.widget_3.maxValue = 200
         #Divisions
         self.widget_3.scalaCount = 10
 
@@ -117,10 +117,10 @@ def Set_Guage_3_Speed(self):
         self.widget_3.setGaugeTheme(0)
         #self.widget_3.setOuterCircleColor()
         red_scale_start = .29
-        red_scale_end = 1
-        yellow_spread = .01
-        self.widget_3.set_scale_polygon_colors([[red_scale_start, Qt.red],
-                                    [red_scale_start+yellow_spread, Qt.yellow],
+        red_scale_end = .7
+        yellow_spread = .1
+        self.widget_3.set_scale_polygon_colors([[red_scale_start, Qt.cyan],
+                                    [red_scale_start+yellow_spread, Qt.green],
                                     [red_scale_start+(yellow_spread*2), Qt.green],
                                     [red_scale_end-(yellow_spread*2), Qt.green],
                                     [red_scale_end-yellow_spread, Qt.yellow],
